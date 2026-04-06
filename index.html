@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sandra Loza</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<style>
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --black:      #000000;
+  --gray-mid:   #444444;
+  --gray-light: #888888;
+  --gray-faint: #D9D9D9;
+  --white:      #FFFFFF;
+  --soft:       #F2F2F2;
+  --green:      #89A61F;
+  --gold:       #CAA148;
+  --serif:      'EB Garamond', Georgia, serif;
+  --sans:       'Inter', 'Helvetica Neue', sans-serif;
+  --line:       0.5px solid #D9D9D9;
+  --ease:       0.3s ease;
+}
+html, body {
+  height: 100%;
+  font-family: var(--sans);
+  background: var(--white);
+  color: var(--black);
+  font-size: 15px;
+  line-height: 1.6;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ── HOMEPAGE ── */
+#home {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.index {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5rem 5vw 3rem;
+}
+.project-list { list-style: none; }
+.project-list li { border-top: var(--line); }
+.project-list li:last-child { border-bottom: var(--line); }
+.project-link {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 0.65rem 0;
+  cursor: pointer;
+}
+.project-num {
+  font-size: 11px;
+  color: var(--gray-light);
+  letter-spacing: 0.04em;
+  min-width: 22px;
+  transition: color var(--ease);
+}
+.project-title-text {
+  font-family: var(--serif);
+  font-size: clamp(1.55rem, 3vw, 2.6rem);
+  font-weight: 400;
+  line-height: 1.1;
+  flex: 1;
+  transition: color var(--ease);
+}
+.project-year {
+  font-size: 12px;
+  color: var(--gray-light);
+  white-space: nowrap;
+}
+.project-link:hover .project-title-text,
+.project-link:hover .project-num { color: var(--gold); }
+
+/* ── FOOTER ── */
+footer {
+  border-top: var(--line);
+  padding: 1.25rem 5vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.footer-name {
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 400;
+}
+.footer-links {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+.footer-link {
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--gray-light);
+  cursor: pointer;
+  transition: color var(--ease);
+  background: none;
+  border: none;
+  font-family: var(--sans);
+  font-weight: 300;
+}
+.footer-link:hover { color: var(--green); }
+.lang {
+  display: flex;
+  border: var(--line);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.lang button {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: transparent;
+  border: none;
+  padding: 3px 9px;
+  cursor: pointer;
+  color: var(--gray-light);
+  transition: background var(--ease), color var(--ease);
+}
+.lang button.active { background: var(--green); color: var(--white); }
+
+/* ── OVERLAY ── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: var(--white);
+  overflow-y: auto;
+  transform: translateY(100%);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+.overlay.open { transform: translateY(0); }
+
+/* overlay top bar */
+.overlay-nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--white);
+  border-bottom: var(--line);
+  padding: 1.1rem 5vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.overlay-back {
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--gray-light);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: color var(--ease);
+  user-select: none;
+}
+.overlay-back::before { content: '←'; }
+.overlay-back:hover { color: var(--green); }
+.overlay-close {
+  font-size: 22px;
+  color: var(--gray-light);
+  background: none;
+  border: none;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  transition: color var(--ease);
+}
+.overlay-close:hover { color: var(--black); }
+
+/* overlay body */
+.overlay-body {
+  padding: 4rem 5vw 7rem;
+}
+
+/* project header */
+.project-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  padding-bottom: 4rem;
+  border-bottom: var(--line);
+  margin-bottom: 4rem;
+}
+.project-series {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+.project-name {
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 2rem;
+}
+.ficha {
+  background: var(--soft);
+  border: var(--line);
+  padding: 1.25rem 1.5rem;
+  border-radius: 2px;
+  font-size: 12.5px;
+  line-height: 1;
+}
+.ficha-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 0.75rem;
+  padding: 0.55rem 0;
+  border-bottom: var(--line);
+}
+.ficha-row:last-child { border-bottom: none; }
+.ficha-key { color: var(--gray-light); }
+.ficha-val { color: var(--gray-mid); }
+.stmt-es {
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--black);
+  margin-bottom: 2rem;
+}
+.stmt-divider { width: 24px; height: 1px; background: var(--gold); margin-bottom: 1.5rem; }
+.stmt-en {
+  font-size: 13.5px;
+  line-height: 1.85;
+  color: var(--gray-mid);
+  font-style: italic;
+}
+
+/* images */
+.img-wrap { overflow: hidden; }
+.img-wrap img { width: 100%; height: 100%; display: block; object-fit: cover; }
+.grid-1 { margin-bottom: 1px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-bottom: 1px; }
+.grid-3 { display: grid; grid-template-columns: 2fr 1fr; gap: 1px; margin-bottom: 1px; }
+.grid-3col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; margin-bottom: 1px; }
+.grid-3-right { display: grid; grid-template-rows: 1fr 1fr; gap: 1px; }
+.aspect-landscape { aspect-ratio: 4/3; }
+.aspect-portrait  { aspect-ratio: 3/4; }
+.aspect-wide      { aspect-ratio: 16/7; }
+.caption-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  font-size: 11.5px;
+  color: var(--gray-light);
+  border-bottom: var(--line);
+  margin-bottom: 1px;
+}
+.video-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--gray-mid);
+  border: var(--line);
+  padding: 0.6rem 1.1rem;
+  border-radius: 2px;
+  margin-top: 1.5rem;
+  transition: background var(--ease), color var(--ease), border-color var(--ease);
+}
+.video-link:hover { background: var(--green); color: var(--white); border-color: var(--green); }
+.video-link::before { content: '▷'; font-size: 10px; }
+
+/* bio overlay */
+.bio-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 5rem; }
+.bio-photo { width: 100%; aspect-ratio: 3/4; overflow: hidden; }
+.bio-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.bio-links { margin-top: 2rem; }
+.bio-link {
+  display: block;
+  font-size: 12px;
+  color: var(--gray-mid);
+  padding: 0.5rem 0;
+  border-bottom: var(--line);
+  transition: color var(--ease);
+}
+.bio-link:hover { color: var(--green); }
+.bio-text {
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--black);
+  margin-bottom: 3rem;
+}
+.bio-text-en { display: none; }
+.bio-section { margin-top: 2.5rem; }
+.bio-section-title {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: var(--line);
+}
+.bio-entry {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 1rem;
+  padding: 0.65rem 0;
+  font-size: 13px;
+  border-bottom: var(--line);
+  color: var(--gray-mid);
+}
+.bio-entry:last-child { border-bottom: none; }
+.bio-entry-year { color: var(--gray-light); }
+.bio-entry-en { display: none; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .project-header { grid-template-columns: 1fr; gap: 2.5rem; }
+  .bio-grid { grid-template-columns: 1fr; }
+  .footer-links { gap: 1.25rem; }
+  .grid-3col { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 520px) {
+  .grid-2 { grid-template-columns: 1fr; }
+  .grid-3 { grid-template-columns: 1fr; }
+  .project-year { display: none; }
+  .overlay-body { padding: 2.5rem 5vw 5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════
+     HOMEPAGE
+════════════════════════════════ -->
+<div id="home">
+  <div class="index">
+    <ul class="project-list">
+
+      <li><div class="project-link" onclick="openOverlay('en-suspension')">
+        <span class="project-num">01</span>
+        <span class="project-title-text" data-es="En suspensión" data-en="In Suspension">En suspensión</span>
+        <span class="project-year">2026</span>
+      </div></li>
+
+      <li><div class="project-link" onclick="openOverlay('mi-cuerpo')">
+        <span class="project-num">02</span>
+        <span class="project-title-text" data-es="Mi cuerpo me dijo que nací de una roca" data-en="My Body Told Me I Was Born from a Rock">Mi cuerpo me dijo que nací de una roca</span>
+        <span class="project-year">2024</span>
+      </div></li>
+
+      <li><div class="project-link" onclick="openOverlay('hay-rios')">
+        <span class="project-num">03</span>
+        <span class="project-title-text" data-es="Hay ríos en mi cuerpo" data-en="There Are Rivers in My Body">Hay ríos en mi cuerpo</span>
+        <span class="project-year">2025</span>
+      </div></li>
+
+      <li><div class="project-link" onclick="openOverlay('latencia-neblina')">
+        <span class="project-num">04</span>
+        <span class="project-title-text" data-es="La latencia del aliento por ser neblina" data-en="The Latency of Breath to Become Fog">La latencia del aliento por ser neblina</span>
+        <span class="project-year">2025</span>
+      </div></li>
+
+      <li><div class="project-link" onclick="openOverlay('polinizadora')">
+        <span class="project-num">05</span>
+        <span class="project-title-text" data-es="Polinizadora / Recolectora" data-en="Pollinator / Collector">Polinizadora / Recolectora</span>
+        <span class="project-year">2025</span>
+      </div></li>
+
+      <li><div class="project-link" onclick="openOverlay('ojos')">
+        <span class="project-num">06</span>
+        <span class="project-title-text" data-es="Ojos que conocieron la misma guerra" data-en="Eyes That Knew the Same War">Ojos que conocieron la misma guerra</span>
+        <span class="project-year">2023</span>
+      </div></li>
+
+      <li><div class="project-link" onclick="openOverlay('ventanas')">
+        <span class="project-num">07</span>
+        <span class="project-title-text" data-es="Ventanas hacia el amor y la pérdida" data-en="Windows Toward Love and Loss">Ventanas hacia el amor y la pérdida</span>
+        <span class="project-year">2020–22</span>
+      </div></li>
+
+      <li><div class="project-link" onclick="openOverlay('first-house')">
+        <span class="project-num">08</span>
+        <span class="project-title-text">First House</span>
+        <span class="project-year">2021</span>
+      </div></li>
+
+      <li><div class="project-link" onclick="openOverlay('formula')">
+        <span class="project-num">09</span>
+        <span class="project-title-text" data-es="Fórmula" data-en="Formula">Fórmula</span>
+        <span class="project-year">2021</span>
+      </div></li>
+
+    </ul>
+  </div>
+
+  <footer>
+    <span class="footer-name">Sandra Loza</span>
+    <div class="footer-links">
+      <button class="footer-link" onclick="openOverlay('bio')" data-es="Bio" data-en="Bio">Bio</button>
+      <a class="footer-link" href="mailto:isandrahl@gmail.com">Mail</a>
+      <a class="footer-link" href="https://instagram.com/xsandralozax" target="_blank">Instagram</a>
+      <div class="lang">
+        <button id="btn-es" class="active" onclick="setLang('es')">ES</button>
+        <button id="btn-en" onclick="setLang('en')">EN</button>
+      </div>
+    </div>
+  </footer>
+</div>
+
+
+<!-- ════════════════════════════════
+     01 · EN SUSPENSIÓN
+════════════════════════════════ -->
+<div id="overlay-en-suspension" class="overlay">
+  <div class="overlay-nav">
+    <span class="overlay-back" onclick="closeOverlay()"><span data-es="Trabajo" data-en="Work">Trabajo</span></span>
+    <button class="overlay-close" onclick="closeOverlay()">×</button>
+  </div>
+  <div class="overlay-body">
+    <div class="project-header">
+      <div>
+        <p class="project-series" data-es="Cuarto de proyectos · Programa Educativo SOMA" data-en="Project room · SOMA Educational Program">Cuarto de proyectos · Programa Educativo SOMA</p>
+        <h1 class="project-name"><span data-es="En suspensión" data-en="In Suspension">En suspensión</span></h1>
+        <div class="ficha">
+          <div class="ficha-row"><span class="ficha-key" data-es="Año" data-en="Year">Año</span><span class="ficha-val">2026</span></div>
+          <div class="ficha-row"><span class="ficha-key" data-es="Materiales" data-en="Materials">Materiales</span><span class="ficha-val"><span data-es="Resina epóxica, ramas naturales, cámaras estenopeicas, lentes de resina natural, fotografías" data-en="Epoxy resin, natural branches, pinhole cameras, natural resin lenses, photographs">Resina epóxica, ramas naturales, cámaras estenopeicas, lentes de resina natural, fotografías</span></span></div>
+          <div class="ficha-row"><span class="ficha-key" data-es="Medidas varias" data-en="Dimensions various">Medidas varias</span><span class="ficha-val">6–65 cm</span></div>
+        </div>
+      </div>
+      <div>
+        <p class="stmt-es">El proyecto reunió objetos realizados con resina epóxica —un árbol exudando resina, ramas de resina— junto con experimentos fotográficos hechos con cámaras estenopeicas construidas manualmente y lentes de resina elaborados por mí. Me interesó pensar la resina como un material capaz de condensar procesos de fijación, encapsulamiento, respiración y derrame.</p>
+        <div class="stmt-divider"></div>
+        <p class="stmt-en">The project brought together objects made with epoxy resin—a tree exuding resin, resin branches—alongside photographic experiments made with hand-built pinhole cameras and resin lenses I made myself. I was interested in thinking of resin as a material capable of condensing processes of fixation, encapsulation, breathing and overflow.</p>
+      </div>
+    </div>
+    <div>
+      <div class="grid-2">
+        <div class="img-wrap aspect-landscape"><img src="img/01-en-suspension.jpg" alt="En suspensión" loading="lazy"></div>
+        <div class="img-wrap aspect-landscape"><img src="img/01-latido-encapsulado.jpg" alt="Latido encapsulado" loading="lazy"></div>
+      </div>
+      <div class="grid-1" style="margin-top:1px;">
+        <div class="img-wrap aspect-wide"><img src="img/01-protesis-de-rama.jpg" alt="Prótesis de rama" loading="lazy"></div>
+      </div>
+      <div class="grid-3col" style="margin-top:1px;">
+        <div class="img-wrap aspect-landscape"><img src="img/01-protesis-de-rama2.jpg" alt="Prótesis de rama, close up 1" loading="lazy"></div>
+        <div class="img-wrap aspect-landscape"><img src="img/01-protesis-de-rama3.jpg" alt="Prótesis de rama, close up 2" loading="lazy"></div>
+        <div class="img-wrap aspect-landscape"><img src="img/01-protesis-de-rama4.jpg" alt="Prótesis de rama, close up 3" loading="lazy"></div>
+      </div>
+      <div class="grid-1" style="margin-top:1px;">
+        <div class="img-wrap aspect-wide"><img src="img/01-arbol-que-exuda.jpg" alt="Árbol que exuda" loading="lazy"></div>
+      </div>
+      <div class="grid-2" style="margin-top:1px;">
+        <div class="img-wrap aspect-landscape"><img src="img/01-arbol-que-exuda2.jpg" alt="Árbol que exuda, close up 1" loading="lazy"></div>
+        <div class="img-wrap aspect-landscape"><img src="img/01-arbol-que-exuda3.jpg" alt="Árbol que exuda, close up 2" loading="lazy"></div>
+      </div>
+      <div class="caption-row" style="margin-top:2rem;">
+        <span data-es="Vistas generales de la exposición" data-en="Exhibition views">Vistas generales de la exposición</span>
+        <span>Cuarto de proyectos · SOMA · 2026</span>
+      </div>
+      <div class="grid-3col">
+        <div class="img-wrap aspect-landscape"><img src="img/01-vista-general.jpg" alt="Vista 1" loading="lazy"></div>
+        <div class="img-wrap aspect-landscape"><img src="img/01-vista-general2.jpg" alt="Vista 2" loading="lazy"></div>
+        <div class="img-wrap aspect-landscape"><img src="img/01-vista-general3.jpg" alt="Vista 3" loading="lazy"></div>
+      </div>
+      <div class="grid-3col" style="margin-top:1px;">
+        <div class="img-wrap aspect-landscape"><img src="img/01-vista-general4.jpg" alt="Vista 4" loading="lazy"></div>
+        <div class="img-wrap aspect-landscape"><img src="img/01-vista-general5.jpg" alt="Vista 5" loading="lazy"></div>
+        <div class="img-wrap aspect-landscape"><img src="img/01-vista-general6.jpg" alt="Vista 6" loading="lazy"></div>
+      </div>
+      <div class="grid-2" style="margin-top:1px;">
+        <div class="img-wrap aspect-landscape"><img src="img/01-mirar-por-la-herida.jpg" alt="Mirar por la herida" loading="lazy"></div>
+        <div class="img-wrap aspect-landscape"><img src="img/01-mirar-por-la-herida2.jpg" alt="Mirar por la herida, detalle" loading="lazy"></div>
+      </div>
+      <div class="grid-2" style="margin-top:1px;">
+        <div class="img-wrap aspect-landscape"><img src="img/01-camara.jpg" alt="Cámara estenopeica" loading="lazy"></div>
+        <div class="img-wrap aspect-landscape"><img src="img/01-resina.jpg" alt="Resina natural" loading="lazy"></div>
+      </div>
+      <div class="grid-1" style="margin-top:1px;">
+        <div class="img-wrap aspect-wide"><img src="img/01-yo-trabajando.jpg" alt="En proceso" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════
+     02 · MI CUERPO ME DIJO QUE NACÍ DE UNA ROCA
+════════════════════════════════ -->
+<div id="overlay-mi-cuerpo" class="overlay">
+  <div class="overlay-nav">
+    <span class="overlay-back" onclick="closeOverlay()"><span data-es="Trabajo" data-en="Work">Trabajo</span></span>
+    <button class="overlay-close" onclick="closeOverlay()">×</button>
+  </div>
+  <div class="overlay-body">
+    <div class="project-header">
+      <div>
+        <p class="project-series" data-es="Serie · 12 piezas · Exposición individual" data-en="Series · 12 works · Solo exhibition">Serie · 12 piezas · Exposición individual</p>
+        <h1 class="project-name"><span data-es="Mi cuerpo me dijo que nací de una roca" data-en="My Body Told Me I Was Born from a Rock">Mi cuerpo me dijo que nací de una roca</span></h1>
+        <div class="ficha">
+          <div class="ficha-row"><span class="ficha-key" data-es="Año" data-en="Year">Año</span><span class="ficha-val">2024</span></div>
+          <div class="ficha-row"><span class="ficha-key" data-es="Exposición" data-en="Exhibition">Exposición</span><span class="ficha-val">Red de Arte Mexicana, CDMX</span></div>
+          <div class="ficha-row"><span class="ficha-key" data-es="Técnicas" data-en="Techniques">Técnicas</span><span class="ficha-val"><span data-es="Archival Pigment Print, video, terrario, cajas de petri, bacterias, tierra, musgo" data-en="Archival Pigment Print, video, terrarium, petri dishes, bacteria, soil, moss">Archival Pigment Print, video, terrario, cajas de petri, bacterias, tierra, musgo</span></span></div>
+        </div>
+      </div>
+      <div>
+        <p class="stmt-es">Propongo disolver la frontera entre cuerpo humano y territorio natural, ambos históricamente divididos: dos entes en oposición, jerarquizados, en un mundo que privilegia la producción y que busca controlarlo todo. Mi obra es una resistencia silenciosa a esta dicotomía. Cada obra plantea la potencia de extender, replegar, contener y moldear mi cuerpo para aproximarme a mi territorio de origen a partir de sus ritmos, latencias y sus propias formas de resistencia.</p>
+        <div class="stmt-divider"></div>
+        <p class="stmt-en">I propose dissolving the boundary between human body and natural territory, historically divided: two entities in opposition, hierarchized, in a world that privileges production and seeks to control everything. My work is a silent resistance to this dichotomy. Each piece proposes the power of extending, folding, containing and molding my body to approach my territory of origin through its rhythms, latencies and its own forms of resistance.</p>
+      </div>
+    </div>
+    <div>
+      <div class="caption-row">
+        <span data-es="La latencia de mi cuerpo que se convierte en cultivo-cultura" data-en="The latency of my body becoming culture-cultivation">La latencia de mi cuerpo que se convierte en cultivo-cultura</span>
+        <span>190 × 420 cm · Archival Pigment Print y cajas de petri</span>
+      </div>
+      <div class="grid-1"><div class="img-wrap aspect-wide"><img src="img/02-latencia-cultivo.jpg" alt="La latencia de mi cuerpo que se convierte en cultivo-cultura" loading="lazy"></div></div>
+      <div class="grid-2" style="margin-top:1px;">
+        <div class="img-wrap aspect-landscape"><img src="img/02-suspension-de-un-bosque.jpg" alt="Suspensión de un bosque" loading="lazy"></div>
+        <div class="img-wrap aspect-landscape"><img src="img/02-todas-las-flores.jpg" alt="Todas las flores que caben en mis manos" loading="lazy"></div>
+      </div>
+      <div class="grid-1" style="margin-top:1px;">
+        <div class="img-wrap aspect-wide"><img src="img/02-todas-las-flores-detalle.jpg" alt="Todas las flores — detalle" loading="lazy"></div>
+      </div>
+      <div class="grid-3col" style="margin-top:1px;">
+        <div class="img-wrap aspect-landscape"><img src="img/02-ser-trueno1.jpg" alt="Ser trueno 1/3" loading="lazy"></div>
+        <div class="img-wrap aspect-landscape"><img src="img/02-ser-trueno2.jpg" alt="Ser trueno 2/3" loading="lazy"></div>
+        <div class="img-wrap aspect-landscape"><img src="img/02-ser-trueno3.jpg" alt="Ser trueno 3/3" loading="lazy"></div>
+      </div>
+      <div class="grid-1" style="margin-top:1px;">
+        <div class="img-wrap aspect-wide"><img src="img/02-hay-rios-II.jpg" alt="Hay ríos en mi cuerpo II" loading="lazy"></div>
+      </div>
+      <div class="grid-1" style="margin-top:1px;">
+        <div class="img-wrap aspect-wide"><img src="img/02-hay-rios-II-detalle.jpg" alt="Hay ríos en mi cuerpo II — detalle" loading="lazy"></div>
+      </div>
+      <div class="grid-3" style="margin-top:1px;">
+        <div class="img-wrap aspect-landscape"><img src="img/02-sostener-el-respiro.jpg" alt="Sostener el respiro, parar el latido II" loading="lazy"></div>
+        <div class="grid-3-right">
+          <div class="img-wrap"><img src="img/02-sudor-y-rocio.jpg" alt="Sudor y rocío" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+          <div class="img-wrap"><img src="img/02-la-latencia-del-aliento.jpg" alt="La latencia del aliento" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="grid-1" style="margin-top:1px;">
+        <div class="img-wrap aspect-wide"><img src="img/02-la-latencia-del-aliento-detalle.jpg" alt="La latencia del aliento — detalle" loading="lazy"></div>
+      </div>
+      <div class="grid-1" style="margin-top:1px;">
+        <div class="img-wrap" style="aspect-ratio:16/7;"><img src="img/02-barro.jpg" alt="De donde vengo los primeros seres humanos fueron creados con barro" loading="lazy"></div>
+      </div>
+      <a class="video-link" href="https://bit.ly/3D1DTpo" target="_blank">
+        <span data-es="Ver video: Intercambio de gases (1:03 min)" data-en="Watch video: Intercambio de gases (1:03 min)">Ver video: Intercambio de gases (1:03 min)</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════
+     03 · HAY RÍOS EN MI CUERPO
+════════════════════════════════ -->
+<div id="overlay-hay-rios" class="overlay">
+  <div class="overlay-nav">
+    <span class="overlay-back" onclick="closeOverlay()"><span data-es="Trabajo" data-en="Work">Trabajo</span></span>
+    <button class="overlay-close" onclick="closeOverlay()">×</button>
+  </div>
+  <div class="overlay-body">
+    <div class="project-header">
+      <div>
+        <p class="project-series" data-es="Fotografía" data-en="Photography">Fotografía</p>
+        <h1 class="project-name"><span data-es="Hay ríos en mi cuerpo" data-en="There Are Rivers in My Body">Hay ríos en mi cuerpo</span></h1>
+        <div class="ficha">
+          <div class="ficha-row"><span class="ficha-key" data-es="Año" data-en="Year">Año</span><span class="ficha-val">2025</span></div>
+          <div class="ficha-row"><span class="ficha-key" data-es="Técnica" data-en="Technique">Técnica</span><span class="ficha-val"><span data-es="Fotografía, baja velocidad de obturación" data-en="Photography, slow shutter speed">Fotografía, baja velocidad de obturación</span></span></div>
+        </div>
+      </div>
+      <div>
+        <p class="stmt-es">Tomé estas fotografías mientras nadaba, con otra persona sincronizando su movimiento frente a mí. Usé una velocidad de obturación baja para que la cámara y el cuerpo estuvieran en desplazamiento constante. El agua y el movimiento arrastran la forma hasta volverla inestable, casi ilegible, haciendo que el cuerpo se confunda con el entorno acuático.</p>
+        <div class="stmt-divider"></div>
+        <p class="stmt-en">I took these photographs while swimming, with another person synchronizing their movement in front of me. I used a slow shutter speed so the camera and body were in constant displacement. Water and movement drag the form until it becomes unstable, almost illegible, making the body merge with its aquatic surroundings.</p>
+      </div>
+    </div>
+    <div>
+      <div class="grid-1"><div class="img-wrap aspect-wide"><img src="img/03-hay-rios-panoramica.jpg" alt="Hay ríos en mi cuerpo" loading="lazy"></div></div>
+      <div class="grid-3col" style="margin-top:1px;">
+        <div class="img-wrap aspect-landscape"><img src="img/03-hay-rios-1.jpg" alt="Hay ríos en mi cuerpo 1" loading="lazy"></div>
+        <div class="img-wrap aspect-landscape"><img src="img/03-hay-rios-2.jpg" alt="Hay ríos en mi cuerpo 2" loading="lazy"></div>
+        <div class="img-wrap aspect-landscape"><img src="img/03-hay-rios-3.jpg" alt="Hay ríos en mi cuerpo 3" loading="lazy"></div>
+      </div>
+      <div class="grid-2" style="margin-top:1px;">
+        <div class="img-wrap aspect-landscape"><img src="img/03-hay-rios-4.jpg" alt="Hay ríos en mi cuerpo 4" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════
+     04 · LA LATENCIA DEL ALIENTO POR SER NEBLINA
+════════════════════════════════ -->
+<div id="overlay-latencia-neblina" class="overlay">
+  <div class="overlay-nav">
+    <span class="overlay-back" onclick="closeOverlay()"><span data-es="Trabajo" data-en="Work">Trabajo</span></span>
+    <button class="overlay-close" onclick="closeOverlay()">×</button>
+  </div>
+  <div class="overlay-body">
+    <div class="project-header">
+      <div>
+        <p class="project-series" data-es="Fotografía" data-en="Photography">Fotografía</p>
+        <h1 class="project-name"><span data-es="La latencia del aliento por ser neblina" data-en="The Latency of Breath to Become Fog">La latencia del aliento por ser neblina</span></h1>
+        <div class="ficha">
+          <div class="ficha-row"><span class="ficha-key" data-es="Año" data-en="Year">Año</span><span class="ficha-val">2025</span></div>
+          <div class="ficha-row"><span class="ficha-key" data-es="Técnica" data-en="Technique">Técnica</span><span class="ficha-val"><span data-es="Fotografía analógica, condensación en lente" data-en="Analog photography, lens condensation">Fotografía analógica, condensación en lente</span></span></div>
+        </div>
+      </div>
+      <div>
+        <p class="stmt-es">Realicé estas fotografías en espacios completamente soleados. Durante la toma, solté mi vaho directamente sobre la lente, cubriéndola de condensación. La imagen registra esa interferencia física: el vapor opaca el paisaje y produce una neblina artificial. La obra surge de insistir en el cuerpo como agente material que altera las condiciones normales de la fotografía.</p>
+        <div class="stmt-divider"></div>
+        <p class="stmt-en">I took these photographs in fully sunlit spaces. During the shot, I exhaled directly onto the lens, covering it with condensation. The image records this physical interference: steam obscures the landscape and produces an artificial fog. The work emerges from insisting on the body as a material agent that alters the normal conditions of photography.</p>
+      </div>
+    </div>
+    <div>
+      <div class="grid-1"><div class="img-wrap aspect-wide"><img src="img/04-neblina-panoramica.jpg" alt="La latencia del aliento por ser neblina" loading="lazy"></div></div>
+      <div class="grid-2" style="margin-top:1px;">
+        <div class="img-wrap aspect-landscape"><img src="img/04-neblina-1.jpg" alt="La latencia del aliento 1" loading="lazy"></div>
+        <div class="img-wrap aspect-landscape"><img src="img/04-neblina-2.jpg" alt="La latencia del aliento 2" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════
+     05 · POLINIZADORA / RECOLECTORA
+════════════════════════════════ -->
+<div id="overlay-polinizadora" class="overlay">
+  <div class="overlay-nav">
+    <span class="overlay-back" onclick="closeOverlay()"><span data-es="Trabajo" data-en="Work">Trabajo</span></span>
+    <button class="overlay-close" onclick="closeOverlay()">×</button>
+  </div>
+  <div class="overlay-body">
+    <div class="project-header">
+      <div>
+        <p class="project-series" data-es="Fotografía · Secuencia" data-en="Photography · Sequence">Fotografía · Secuencia</p>
+        <h1 class="project-name"><span data-es="Polinizadora / Recolectora" data-en="Pollinator / Collector">Polinizadora / Recolectora</span></h1>
+        <div class="ficha">
+          <div class="ficha-row"><span class="ficha-key" data-es="Año" data-en="Year">Año</span><span class="ficha-val">2025</span></div>
+          <div class="ficha-row"><span class="ficha-key" data-es="Piezas" data-en="Pieces">Piezas</span><span class="ficha-val"><span data-es="39 fotografías de baja velocidad" data-en="39 slow shutter speed photographs">39 fotografías de baja velocidad</span></span></div>
+        </div>
+      </div>
+      <div>
+        <p class="stmt-es">Selección de 39 fotografías de baja velocidad. Secuencia de imágenes tomadas desde mi perspectiva, en el preciso momento en que mi cuerpo se inclina para recolectar o depositar semillas.</p>
+        <div class="stmt-divider"></div>
+        <p class="stmt-en">Selection of 39 slow shutter speed photographs. Sequence of images taken from my perspective, at the precise moment my body bends to collect or deposit seeds.</p>
+      </div>
+    </div>
+    <div>
+      <div class="grid-1"><div class="img-wrap aspect-wide"><img src="img/05-polinizadora-panoramica.jpg" alt="Polinizadora / Recolectora" loading="lazy"></div></div>
+      <div class="grid-2" style="margin-top:1px;">
+        <div class="img-wrap aspect-landscape"><img src="img/05-polinizadora-1.jpg" alt="Polinizadora 1" loading="lazy"></div>
+        <div class="img-wrap aspect-landscape"><img src="img/05-polinizadora-2.jpg" alt="Polinizadora 2" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════
+     06 · OJOS QUE CONOCIERON LA MISMA GUERRA
+════════════════════════════════ -->
+<div id="overlay-ojos" class="overlay">
+  <div class="overlay-nav">
+    <span class="overlay-back" onclick="closeOverlay()"><span data-es="Trabajo" data-en="Work">Trabajo</span></span>
+    <button class="overlay-close" onclick="closeOverlay()">×</button>
+  </div>
+  <div class="overlay-body">
+    <div class="project-header">
+      <div>
+        <p class="project-series" data-es="Fotografía · Instalación · Exposición individual" data-en="Photography · Installation · Solo exhibition">Fotografía · Instalación · Exposición individual</p>
+        <h1 class="project-name"><span data-es="Ojos que conocieron la misma guerra" data-en="Eyes That Knew the Same War">Ojos que conocieron la misma guerra</span></h1>
+        <div class="ficha">
+          <div class="ficha-row"><span class="ficha-key" data-es="Año" data-en="Year">Año</span><span class="ficha-val">2023</span></div>
+          <div class="ficha-row"><span class="ficha-key" data-es="Exposición" data-en="Exhibition">Exposición</span><span class="ficha-val"><span data-es="Galería Espacio Alternativo del CENART, CDMX" data-en="Galería Espacio Alternativo del CENART, Mexico City">Galería Espacio Alternativo del CENART, CDMX</span></span></div>
+          <div class="ficha-row"><span class="ficha-key" data-es="Técnica" data-en="Technique">Técnica</span><span class="ficha-val">Archival Pigment Print</span></div>
+        </div>
+      </div>
+      <div>
+        <p class="stmt-es">Exploración fotográfica centrada en mi historia familiar que reúne imágenes de archivo familiar con fotografías construidas basándome en la memoria de mi infancia. En Alejandro, mi medio hermano que asumió la responsabilidad de padre sobre mí desde joven, y en la transmutación que sufren las memorias de un infante respecto a sus padres una vez que experimenta la adultez. Sostengo la idea de hogar y familia como un grupo de remanentes, la idea de escombro como familia y la persistente búsqueda por recoger los fragmentos de lo que un día se destruyó.</p>
+        <div class="stmt-divider"></div>
+        <p class="stmt-en">A photographic exploration centered on my family history, bringing together family archive images with constructed photographs based on my childhood memories. About Alejandro, my half-brother who took on the responsibility of fatherhood for me from a young age, and the transmutation that a child's memories of their parents undergo once they experience adulthood. I hold the idea of home and family as a group of remnants, rubble as family, and the persistent search to gather the fragments of what was once destroyed.</p>
+      </div>
+    </div>
+    <div>
+      <div class="grid-2">
+        <div class="img-wrap aspect-landscape"><img src="img/06-caballo-nadando.jpg" alt="Caballo nadando" loading="lazy"></div>
+        <div class="img-wrap aspect-landscape"><img src="img/06-alejandro-asiento.jpg" alt="Alejandro abrazando asiento" loading="lazy"></div>
+      </div>
+      <div class="grid-3" style="margin-top:1px;">
+        <div class="img-wrap aspect-landscape"><img src="img/06-ante-la-presa.jpg" alt="Ante la presa" loading="lazy"></div>
+        <div class="grid-3-right">
+          <div class="img-wrap"><img src="img/06-bosque.jpg" alt="Bosque" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+          <div class="img-wrap"><img src="img/06-arbol-roto.jpg" alt="Árbol roto" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="grid-2" style="margin-top:1px;">
+        <div class="img-wrap aspect-landscape"><img src="img/06-buscando-la-raiz.jpg" alt="Buscando la raíz" loading="lazy"></div>
+        <div class="img-wrap aspect-landscape"><img src="img/06-alejandro-y-sandra.jpg" alt="Alejandro y Sandra abrazándose" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════
+     07 · VENTANAS HACIA EL AMOR Y LA PÉRDIDA
+════════════════════════════════ -->
+<div id="overlay-ventanas" class="overlay">
+  <div class="overlay-nav">
+    <span class="overlay-back" onclick="closeOverlay()"><span data-es="Trabajo" data-en="Work">Trabajo</span></span>
+    <button class="overlay-close" onclick="closeOverlay()">×</button>
+  </div>
+  <div class="overlay-body">
+    <div class="project-header">
+      <div>
+        <p class="project-series" data-es="Fotografía" data-en="Photography">Fotografía</p>
+        <h1 class="project-name"><span data-es="Ventanas hacia el amor y la pérdida" data-en="Windows Toward Love and Loss">Ventanas hacia el amor y la pérdida</span></h1>
+        <div class="ficha">
+          <div class="ficha-row"><span class="ficha-key" data-es="Año" data-en="Year">Año</span><span class="ficha-val">2020–2022</span></div>
+          <div class="ficha-row"><span class="ficha-key" data-es="Técnica" data-en="Technique">Técnica</span><span class="ficha-val">Archival Pigment Print</span></div>
+        </div>
+      </div>
+      <div>
+        <p class="stmt-es">Serie fotográfica que explora el amor y la pérdida a través de imágenes que oscilan entre lo íntimo y lo silenciado.</p>
+        <div class="stmt-divider"></div>
+        <p class="stmt-en">Photographic series exploring love and loss through images that oscillate between the intimate and the silenced.</p>
+      </div>
+    </div>
+    <div>
+      <div class="grid-2">
+        <div class="img-wrap aspect-landscape"><img src="img/07-revolver.jpg" alt="Revólver" loading="lazy"></div>
+        <div class="img-wrap aspect-landscape"><img src="img/07-cuerpo.JPG" alt="Cuerpo" loading="lazy"></div>
+      </div>
+      <div class="grid-2" style="margin-top:1px;">
+        <div class="img-wrap aspect-landscape"><img src="img/07-alejandra-y-carlos.jpg" alt="Alejandra y Carlos" loading="lazy"></div>
+        <div class="img-wrap aspect-landscape"><img src="img/07-ventana-del-cupa.JPG" alt="Ventana del CUPA" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════
+     08 · FIRST HOUSE
+════════════════════════════════ -->
+<div id="overlay-first-house" class="overlay">
+  <div class="overlay-nav">
+    <span class="overlay-back" onclick="closeOverlay()"><span data-es="Trabajo" data-en="Work">Trabajo</span></span>
+    <button class="overlay-close" onclick="closeOverlay()">×</button>
+  </div>
+  <div class="overlay-body">
+    <div class="project-header">
+      <div>
+        <p class="project-series" data-es="Instalación · Transfer · Sonido" data-en="Installation · Transfer · Sound">Instalación · Transfer · Sonido</p>
+        <h1 class="project-name">First House</h1>
+        <div class="ficha">
+          <div class="ficha-row"><span class="ficha-key" data-es="Año" data-en="Year">Año</span><span class="ficha-val">2021</span></div>
+          <div class="ficha-row"><span class="ficha-key" data-es="Materiales" data-en="Materials">Materiales</span><span class="ficha-val"><span data-es="Escombros de casas, transfer fotográfico, listón bordado, vistas satelitales sobre tela, sonido" data-en="House rubble, photographic transfer, embroidered ribbon, satellite views on fabric, sound">Escombros de casas, transfer fotográfico, listón bordado, vistas satelitales sobre tela, sonido</span></span></div>
+        </div>
+      </div>
+      <div>
+        <p class="stmt-es">Acercamiento a la idea de hogar y familia como un grupo de remanentes, valiéndome de la instalación y apoyándome del transfer de fotografías del archivo familiar sobre escombros de casas y transfers de vistas satelitales sobre tela como una búsqueda desesperada por la ubicación geográfica de hogar.</p>
+        <div class="stmt-divider"></div>
+        <p class="stmt-en">An approach to the idea of home and family as a group of remnants, using installation and the transfer of family archive photographs onto house rubble, and satellite views transferred onto fabric as a desperate search for the geographic location of home.</p>
+      </div>
+    </div>
+    <div>
+      <div class="grid-2">
+        <div class="img-wrap aspect-landscape"><img src="img/08-mama.jpg" alt="Mamá" loading="lazy"></div>
+        <div class="img-wrap aspect-landscape"><img src="img/08-alejandro-y-sandra.jpg" alt="Alejandro y Sandra" loading="lazy"></div>
+      </div>
+      <div class="grid-1" style="margin-top:1px;">
+        <div class="img-wrap aspect-wide"><img src="img/08-listón..jpg" alt="Odio experimentar la sensación de querer ir a casa..." loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════
+     09 · FÓRMULA
+════════════════════════════════ -->
+<div id="overlay-formula" class="overlay">
+  <div class="overlay-nav">
+    <span class="overlay-back" onclick="closeOverlay()"><span data-es="Trabajo" data-en="Work">Trabajo</span></span>
+    <button class="overlay-close" onclick="closeOverlay()">×</button>
+  </div>
+  <div class="overlay-body">
+    <div class="project-header">
+      <div>
+        <p class="project-series" data-es="Videoperformance" data-en="Video performance">Videoperformance</p>
+        <h1 class="project-name">Fórmula</h1>
+        <div class="ficha">
+          <div class="ficha-row"><span class="ficha-key" data-es="Año" data-en="Year">Año</span><span class="ficha-val">2021</span></div>
+          <div class="ficha-row"><span class="ficha-key" data-es="Duración" data-en="Duration">Duración</span><span class="ficha-val">14:11 min</span></div>
+          <div class="ficha-row"><span class="ficha-key" data-es="Intérpretes" data-en="Performers">Intérpretes</span><span class="ficha-val">6</span></div>
+        </div>
+      </div>
+      <div>
+        <p class="stmt-es">Registro en video del performance Fórmula, repetido durante tiempos variables en una habitación vacía. La posición de la cámara emula la de las cámaras de seguridad. Seis personas traducen corporalmente un grupo de palabras dadas en loop: arriba, latido, motor, cajas, esposas, prisión, objetos pesados, espejo. Los performers repiten el ejercicio en tiempos cada vez menores hasta que el cansancio vuelve los movimientos erráticos y asíncronos. Concluye con los cuerpos en el piso.</p>
+        <div class="stmt-divider"></div>
+        <p class="stmt-en">Video record of the performance Formula, repeated for variable durations in an empty room. The camera position emulates surveillance cameras. Six people physically translate a looping set of words: up, heartbeat, motor, boxes, handcuffs, prison, heavy objects, mirror. Performers repeat the exercise in increasingly shorter times until exhaustion renders the movements erratic and asynchronous. It concludes with the bodies on the floor.</p>
+      </div>
+    </div>
+    <div>
+      <div class="grid-1">
+        <div class="img-wrap aspect-wide"><img src="img/09-formula.png" alt="Fórmula — documentación del performance" loading="lazy"></div>
+      </div>
+      <a class="video-link" href="https://bit.ly/3YCOY7S" target="_blank">
+        <span data-es="Ver video completo (14:11 min)" data-en="Watch full video (14:11 min)">Ver video completo (14:11 min)</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════
+     BIO
+════════════════════════════════ -->
+<div id="overlay-bio" class="overlay">
+  <div class="overlay-nav">
+    <span class="overlay-back" onclick="closeOverlay()"><span data-es="Inicio" data-en="Home">Inicio</span></span>
+    <button class="overlay-close" onclick="closeOverlay()">×</button>
+  </div>
+  <div class="overlay-body">
+    <div class="bio-grid">
+      <div>
+        <div class="bio-photo">
+          <img src="img/_MG_7570.jpg" alt="Sandra Loza">
+        </div>
+        <div class="bio-links">
+          <a class="bio-link" href="mailto:isandrahl@gmail.com">isandrahl@gmail.com</a>
+          <a class="bio-link" href="https://instagram.com/xsandralozax" target="_blank">@xsandralozax</a>
+        </div>
+      </div>
+      <div>
+        <p class="bio-text bio-text-es">Sandra Loza (n. 1998, Hidalgo, México) trabaja con fotografía, video, acciones corporales e instalación. Usa materiales orgánicos porque no se dejan controlar del todo: tierra, bacterias, musgo, resina, sudor o aliento. Piensa el cuerpo como un territorio frágil, habitable por otros organismos y atravesado por tiempos que no le pertenecen.</p>
+        <p class="bio-text bio-text-en">Sandra Loza (b. 1998, Hidalgo, Mexico) works with photography, video, body actions and installation. She uses organic materials because they resist total control: soil, bacteria, moss, resin, sweat or breath. She thinks of the body as a fragile territory, habitable by other organisms and traversed by times that do not belong to it.</p>
+
+        <div class="bio-section">
+          <p class="bio-section-title" data-es="Educación" data-en="Education">Educación</p>
+          <div class="bio-entry">
+            <span class="bio-entry-year">2019–24</span>
+            <span class="bio-entry-es">ENPEG "La Esmeralda", Ciudad de México</span>
+            <span class="bio-entry-en">ENPEG "La Esmeralda", Mexico City</span>
+          </div>
+        </div>
+
+        <div class="bio-section">
+          <p class="bio-section-title" data-es="Exposiciones individuales" data-en="Solo exhibitions">Exposiciones individuales</p>
+          <div class="bio-entry">
+            <span class="bio-entry-year">2024</span>
+            <span class="bio-entry-es">Red de Arte Mexicana, CDMX</span>
+            <span class="bio-entry-en">Red de Arte Mexicana, Mexico City</span>
+          </div>
+          <div class="bio-entry">
+            <span class="bio-entry-year">2023</span>
+            <span class="bio-entry-es">Ojos que conocieron la misma guerra · Galería Espacio Alternativo, CENART, CDMX</span>
+            <span class="bio-entry-en">Eyes That Knew the Same War · Galería Espacio Alternativo, CENART, Mexico City</span>
+          </div>
+        </div>
+
+        <div class="bio-section">
+          <p class="bio-section-title" data-es="Exposiciones colectivas" data-en="Group exhibitions">Exposiciones colectivas</p>
+          <div class="bio-entry">
+            <span class="bio-entry-year">2024</span>
+            <span class="bio-entry-es">HABITAT, El ecosentir de la tierra · The Art Pavilion, Mile End Park, Londres</span>
+            <span class="bio-entry-en">HABITAT, El ecosentir de la tierra · The Art Pavilion, Mile End Park, London</span>
+          </div>
+        </div>
+
+        <div class="bio-section">
+          <p class="bio-section-title" data-es="Residencias y becas" data-en="Residencies and grants">Residencias y becas</p>
+          <div class="bio-entry">
+            <span class="bio-entry-year">2025</span>
+            <span class="bio-entry-es">Residencia · Museo de Arte Moderno de Chiloé, Chile — FONCA</span>
+            <span class="bio-entry-en">Residency · Museo de Arte Moderno de Chiloé, Chile — FONCA</span>
+          </div>
+          <div class="bio-entry">
+            <span class="bio-entry-year">2023</span>
+            <span class="bio-entry-es">Jóvenes Creadores — FONCA</span>
+            <span class="bio-entry-en">Young Creators grant — FONCA</span>
+          </div>
+        </div>
+
+        <div class="bio-section">
+          <p class="bio-section-title" data-es="Programas" data-en="Programs">Programas</p>
+          <div class="bio-entry">
+            <span class="bio-entry-year">2025–</span>
+            <span class="bio-entry-es">Programa Educativo SOMA, Ciudad de México</span>
+            <span class="bio-entry-en">SOMA Educational Program, Mexico City</span>
+          </div>
+          <div class="bio-entry">
+            <span class="bio-entry-year">2024–</span>
+            <span class="bio-entry-es">Proyecto Imaginario, Ciudad de México</span>
+            <span class="bio-entry-en">Proyecto Imaginario, Mexico City</span>
+          </div>
+        </div>
+
+        <div class="bio-section">
+          <p class="bio-section-title" data-es="Publicaciones" data-en="Press">Publicaciones</p>
+          <div class="bio-entry">
+            <span class="bio-entry-year"></span>
+            <span>Fisheye Magazine</span>
+          </div>
+          <div class="bio-entry">
+            <span class="bio-entry-year"></span>
+            <span>Vist Projects</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+let currentLang = 'es';
+let activeOverlay = null;
+
+function openOverlay(id) {
+  // close any open first
+  if (activeOverlay) {
+    document.getElementById('overlay-' + activeOverlay).classList.remove('open');
+  }
+  const el = document.getElementById('overlay-' + id);
+  if (el) {
+    el.classList.add('open');
+    el.scrollTop = 0;
+    activeOverlay = id;
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeOverlay() {
+  if (activeOverlay) {
+    document.getElementById('overlay-' + activeOverlay).classList.remove('open');
+    activeOverlay = null;
+    document.body.style.overflow = '';
+  }
+}
+
+// close on ESC
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeOverlay();
+});
+
+function setLang(lang) {
+  currentLang = lang;
+  document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+  // data-es / data-en text nodes
+  document.querySelectorAll('[data-es]').forEach(el => {
+    el.textContent = lang === 'es' ? el.getAttribute('data-es') : el.getAttribute('data-en');
+  });
+
+  // bio text
+  document.querySelectorAll('.bio-text-es').forEach(el => el.style.display = lang === 'es' ? '' : 'none');
+  document.querySelectorAll('.bio-text-en').forEach(el => el.style.display = lang === 'en' ? '' : 'none');
+
+  // bio entries
+  document.querySelectorAll('.bio-entry-es').forEach(el => el.style.display = lang === 'es' ? '' : 'none');
+  document.querySelectorAll('.bio-entry-en').forEach(el => el.style.display = lang === 'en' ? '' : 'none');
+}
+
+// init language display
+setLang('es');
+</script>
+</body>
+</html>
