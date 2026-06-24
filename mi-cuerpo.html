@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi cuerpo me dijo que nací de una roca — Sandra Loza</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;1,400&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 14px;
+  color: #111111;
+  background: #ffffff;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── SIDEBAR ─── */
+.sidebar {
+  width: 184px;
+  flex-shrink: 0;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 44px 20px 48px 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-name {
+  font-family: 'Inter', 'Helvetica Neue', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #111111;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 36px;
+  line-height: 1.4;
+}
+.sidebar-name:hover { text-decoration: underline; }
+
+.sidebar-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #111111;
+  margin-bottom: 14px;
+}
+
+.sidebar-links {
+  list-style: none;
+  flex: 1;
+}
+.sidebar-links li {
+  margin-bottom: 14px;
+}
+.sidebar-links li a {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #111111;
+  text-decoration: none;
+  line-height: 1.55;
+  display: block;
+}
+.sidebar-links li a:hover { text-decoration: underline; }
+.sidebar-links li a.active { text-decoration: underline; }
+
+.sidebar-contact {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #111111;
+  text-decoration: none;
+  margin-top: 28px;
+  padding-top: 20px;
+  display: block;
+}
+.sidebar-contact:hover { text-decoration: underline; }
+
+/* ─── MAIN ─── */
+.main {
+  flex: 1;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 64px 0 100px;
+}
+
+.content {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+/* ─── PROJECT HEADER ─── */
+.project-title {
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 29px;
+  font-weight: 400;
+  text-align: center;
+  line-height: 1.25;
+  color: #111111;
+  margin-bottom: 10px;
+}
+.project-year {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: #888888;
+  text-align: center;
+  margin-bottom: 6px;
+}
+.project-media {
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 12px;
+  font-style: italic;
+  color: #888888;
+  text-align: center;
+  margin-bottom: 52px;
+  line-height: 1.5;
+}
+
+/* ─── BILINGUAL INTRO ─── */
+.text-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 72px;
+  line-height: 1.78;
+  font-size: 14px;
+  color: #111111;
+}
+
+/* ─── FICHA TÉCNICA DE OBRA ─── */
+.ficha-obra {
+  font-family: 'Inter', sans-serif;
+  font-size: 11.5px;
+  color: #555555;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+.ficha-obra em {
+  font-style: italic;
+}
+
+/* ─── OBRA DESCRIPTIONS ─── */
+.obra-desc {
+  font-size: 14px;
+  line-height: 1.75;
+  color: #111111;
+}
+
+/* ─── FORMAT A: full-width + ficha arriba + desc centrada ─── */
+.obra-format-a {
+  margin-bottom: 88px;
+}
+.obra-format-a .img-full {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 20px;
+}
+.obra-format-a .obra-desc {
+  width: 70%;
+  margin: 0 auto;
+  text-align: left;
+}
+
+/* ─── FORMAT B: imagen izquierda 55% + texto derecha ─── */
+.obra-format-b {
+  margin-bottom: 88px;
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+}
+.obra-format-b .obra-imgs {
+  width: 55%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.obra-format-b .obra-imgs img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+.obra-format-b .obra-imgs img:first-child {
+  aspect-ratio: 4 / 3;
+}
+.obra-format-b .obra-imgs img:not(:first-child) {
+  aspect-ratio: 4 / 3;
+}
+.obra-format-b .obra-text {
+  flex: 1;
+  padding-top: 2px;
+}
+.obra-format-b .obra-text .ficha-obra {
+  margin-bottom: 16px;
+}
+
+/* ─── FORMAT C: texto izquierda + imagen derecha ─── */
+.obra-format-c {
+  margin-bottom: 88px;
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+}
+.obra-format-c .obra-text {
+  flex: 1;
+  padding-top: 2px;
+}
+.obra-format-c .obra-text .ficha-obra {
+  margin-bottom: 16px;
+}
+.obra-format-c .obra-imgs {
+  width: 52%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.obra-format-c .obra-imgs img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  display: block;
+  object-fit: cover;
+}
+
+/* ─── FORMAT E: video embed ─── */
+.obra-format-e {
+  margin-bottom: 88px;
+}
+.obra-format-e .video-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #f0f0f0;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.obra-format-e .video-wrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.obra-format-e .video-placeholder {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: #aaa;
+  text-align: center;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.obra-format-e .obra-desc {
+  width: 70%;
+  margin: 0 auto;
+  text-align: left;
+}
+
+/* ─── FORMAT F: tres columnas ─── */
+.obra-format-f {
+  margin-bottom: 88px;
+}
+.obra-format-f .ficha-obra {
+  text-align: center;
+  margin-bottom: 16px;
+}
+.obra-format-f .cols-three {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.obra-format-f .cols-three img {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  display: block;
+}
+.obra-format-f .obra-desc {
+  width: 70%;
+  margin: 0 auto;
+  text-align: left;
+}
+
+/* ─── FORMAT F-ROW: tres obras en fila ─── */
+.obras-row-three {
+  margin-bottom: 88px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+}
+.obra-col {
+  display: flex;
+  flex-direction: column;
+}
+.obra-col img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 12px;
+}
+.obra-col .ficha-obra {
+  margin-bottom: 10px;
+}
+.obra-col .obra-desc {
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+/* ─── YOU MAY ALSO LIKE ─── */
+.also-like {
+  margin-top: 80px;
+  padding-top: 48px;
+  border-top: 0.5px solid #e6e6e6;
+}
+.also-like-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: #888888;
+  text-align: center;
+  margin-bottom: 24px;
+}
+.also-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+.also-item {
+  text-decoration: none;
+  color: #111111;
+  display: block;
+}
+.also-item img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 8px;
+}
+.also-item-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  text-align: center;
+  color: #888888;
+  line-height: 1.4;
+}
+.also-item:hover .also-item-name { color: #111; text-decoration: underline; }
+
+/* ─── POWERED BY ─── */
+.powered-by {
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+  font-size: 11px;
+  color: #cccccc;
+  margin-top: 56px;
+  padding-bottom: 8px;
+}
+
+/* ─── SCROLLBAR ─── */
+.main::-webkit-scrollbar { width: 5px; }
+.main::-webkit-scrollbar-track { background: transparent; }
+.main::-webkit-scrollbar-thumb { background: #ddd; border-radius: 3px; }
+
+</style>
+</head>
+<body>
+
+<!-- ── SIDEBAR ── -->
+<aside class="sidebar">
+
+  <a class="sidebar-name" href="index.html">Sandra Loza</a>
+
+  <p class="sidebar-label">Work</p>
+
+  <ul class="sidebar-links">
+    <li><a href="en-suspension.html">En suspensión</a></li>
+    <li><a href="mi-cuerpo.html" class="active">Mi cuerpo me dijo que nací de una roca</a></li>
+    <li><a href="index.html">La latencia del aliento por ser neblina</a></li>
+    <li><a href="index.html">Hay ríos en mi cuerpo</a></li>
+    <li><a href="index.html">Polinizadora / Recolectora</a></li>
+    <li><a href="index.html">Ojos que conocieron la misma guerra</a></li>
+    <li><a href="index.html">Ventanas hacia el amor y la pérdida</a></li>
+    <li><a href="index.html">First House</a></li>
+    <li><a href="index.html">Fórmula</a></li>
+  </ul>
+
+  <a class="sidebar-contact" href="mailto:isandrahl@gmail.com">Contact</a>
+
+</aside>
+
+
+<!-- ── MAIN CONTENT ── -->
+<main class="main">
+  <div class="content">
+
+    <!-- ── ENCABEZADO ── -->
+    <h1 class="project-title">Mi cuerpo me dijo que nací de una roca</h1>
+    <p class="project-year">2024 · Red de Arte Mexicana, CDMX</p>
+    <p class="project-media">Archival Pigment Print, video, terrario, cajas de petri, bacterias, tierra, musgo</p>
+
+    <!-- ── TEXTO INTRODUCTORIO BILINGÜE ── -->
+    <div class="text-cols">
+      <p>Propongo disolver la frontera entre cuerpo humano y territorio natural, ambos históricamente divididos: dos entes en oposición, jerarquizados, en un mundo que privilegia la producción y que busca controlarlo todo. Mi obra es una resistencia silenciosa a esta dicotomía. Cada pieza plantea la potencia de extender, replegar, contener y moldear mi cuerpo para aproximarme a mi territorio de origen a partir de sus ritmos, latencias y sus propias formas de resistencia.</p>
+      <p>I propose dissolving the boundary between human body and natural territory, historically divided: two entities in opposition, hierarchized, in a world that privileges production and seeks to control everything. My work is a silent resistance to this dichotomy. Each piece proposes the power of extending, folding, containing and molding my body to approach my territory of origin through its rhythms, latencies and its own forms of resistance.</p>
+    </div>
+
+
+    <!-- ════════════════════════════
+         OBRA 1 — FORMATO A
+         La latencia de mi cuerpo que se convierte en cultivo-cultura
+    ════════════════════════════ -->
+    <article class="obra-format-a">
+      <p class="ficha-obra"><em>"La latencia de mi cuerpo que se convierte en cultivo-cultura"</em>, 2024, Archival Pigment Print y cajas de petri, 190 × 420 cm</p>
+      <img class="img-full" src="img/02-latencia-cultivo.jpg" alt="La latencia de mi cuerpo que se convierte en cultivo-cultura">
+      <p class="obra-desc">Fotografía a gran escala en la que mi cuerpo yace sobre una superficie blanca, rodeado de cajas de petri con colonias bacterianas activas. La imagen pone en tensión dos tiempos: el tiempo del cuerpo detenido y el tiempo de los organismos en proceso de proliferación. El cuerpo como medio de cultivo. El territorio como laboratorio.</p>
+    </article>
+
+
+    <!-- ════════════════════════════
+         OBRA 2 — FORMATO B
+         Todas las flores que caben en mis manos
+    ════════════════════════════ -->
+    <article class="obra-format-b">
+      <div class="obra-imgs">
+        <img src="img/02-todas-las-flores.jpg" alt="Todas las flores que caben en mis manos">
+        <img src="img/02-todas-las-flores-detalle.jpg" alt="Todas las flores — detalle">
+      </div>
+      <div class="obra-text">
+        <p class="ficha-obra"><em>"Todas las flores que caben en mis manos"</em>, 2024, Archival Pigment Print, 30 × 210 cm</p>
+        <p class="obra-desc">Imagen panorámica y horizontal en la que mis manos reúnen flores: todas las que pueden caber. El gesto convierte el cuerpo en unidad de medida, en escala de lo que puede ser contenido. La acumulación como forma de relación con el territorio, no de extracción sino de reunión transitoria.</p>
+      </div>
+    </article>
+
+
+    <!-- ════════════════════════════
+         OBRA 3 — FORMATO F (tríptico)
+         Ser trueno
+    ════════════════════════════ -->
+    <article class="obra-format-f">
+      <p class="ficha-obra"><em>"Ser trueno"</em>, 2024, Archival Pigment Print, 31 × 137 cm c/u, tríptico</p>
+      <div class="cols-three">
+        <img src="img/02-ser-trueno1.jpg" alt="Ser trueno 1/3">
+        <img src="img/02-ser-trueno2.jpg" alt="Ser trueno 2/3">
+        <img src="img/02-ser-trueno3.jpg" alt="Ser trueno 3/3">
+      </div>
+      <p class="obra-desc">Tríptico fotográfico en el que el cuerpo ocupa la misma posición en tres momentos de tensión muscular distintos. El trueno como metáfora de la descarga interna: la energía que se acumula antes de liberarse. El formato vertical y estrecho obliga a que el cuerpo se comprima, se doble, se curve para caber.</p>
+    </article>
+
+
+    <!-- ════════════════════════════
+         OBRA 4 — FORMATO C
+         Hay ríos en mi cuerpo II
+    ════════════════════════════ -->
+    <article class="obra-format-c">
+      <div class="obra-text">
+        <p class="ficha-obra"><em>"Hay ríos en mi cuerpo II"</em>, 2024, Archival Pigment Print, 31 × 137 cm</p>
+        <p class="obra-desc">El cuerpo en contacto con el agua: la piel como cuenca, los brazos como afluentes. La imagen registra el momento en que la corriente define la forma del cuerpo desde afuera, igual que el paisaje es definido por el agua que lo atraviesa. Una correspondencia entre sistemas internos y geografías externas.</p>
+      </div>
+      <div class="obra-imgs">
+        <img src="img/02-hay-rios-II.jpg" alt="Hay ríos en mi cuerpo II">
+        <img src="img/02-hay-rios-II-detalle.jpg" alt="Hay ríos en mi cuerpo II — detalle">
+      </div>
+    </article>
+
+
+    <!-- ════════════════════════════
+         OBRA 5 — FORMATO B
+         La latencia del aliento
+    ════════════════════════════ -->
+    <article class="obra-format-b">
+      <div class="obra-imgs">
+        <img src="img/02-la-latencia-del-aliento.jpg" alt="La latencia del aliento">
+        <img src="img/02-la-latencia-del-aliento-detalle.jpg" alt="La latencia del aliento — detalle">
+      </div>
+      <div class="obra-text">
+        <p class="ficha-obra"><em>"La latencia del aliento"</em>, 2024, terrario de vidrio, tierra, musgo, 12 × 12 × 12 cm</p>
+        <p class="obra-desc">Terrario de dimensiones mínimas que contiene tierra y musgo. El interior registra condensación de aliento humano depositado sobre el vidrio durante días de observación. El aliento como materia que se deposita, que humedece, que transforma el microclima. La latencia: lo que está activo sin ser visible aún.</p>
+      </div>
+    </article>
+
+
+    <!-- ════════════════════════════
+         OBRA 6 — FORMATO E (video)
+         Intercambio de gases
+    ════════════════════════════ -->
+    <article class="obra-format-e">
+      <p class="ficha-obra"><em>"Intercambio de gases"</em>, 2024, videoinstalación, duración variable</p>
+      <div class="video-wrap">
+        <div class="video-placeholder">Video · Intercambio de gases</div>
+      </div>
+      <p class="obra-desc">Videoinstalación que registra la respiración sincronizada entre mi cuerpo y una planta durante una sesión de duración variable. Inhalo lo que ella exhala, exhalo lo que ella necesita. El intercambio de gases como forma primaria de relación con el territorio: el sistema respiratorio como interfaz.</p>
+    </article>
+
+
+    <!-- ════════════════════════════
+         OBRA 7 — FORMATO C
+         Sostener el respiro, parar el latido II
+    ════════════════════════════ -->
+    <article class="obra-format-c">
+      <div class="obra-text">
+        <p class="ficha-obra"><em>"Sostener el respiro, parar el latido II"</em>, 2024, Archival Pigment Print y roca, 51 × 76 cm</p>
+        <p class="obra-desc">Fotografía de mi cuerpo en apnea junto a una roca cuyo peso aproxima el del torso. La roca como contrapeso, como presencia que iguala. La contención de la respiración como gesto de aproximación a otro ritmo de tiempo: el tiempo geológico, la dureza, la permanencia.</p>
+      </div>
+      <div class="obra-imgs">
+        <img src="img/02-sostener-el-respiro.jpg" alt="Sostener el respiro, parar el latido II">
+      </div>
+    </article>
+
+
+    <!-- ════════════════════════════
+         OBRAS 8–10 — FORMATO F (fila de tres obras)
+         Suspensión de un bosque / De donde vengo... / Sudor y rocío
+    ════════════════════════════ -->
+    <div class="obras-row-three">
+
+      <div class="obra-col">
+        <img src="img/02-suspension-de-un-bosque.jpg" alt="Suspensión de un bosque">
+        <p class="ficha-obra"><em>"Suspensión de un bosque"</em>, 2024, Archival Pigment Print, 76 × 114 cm</p>
+        <p class="obra-desc">Fragmento de bosque fotografiado en el instante de máxima quietud. La imagen propone la suspensión como estado posible: ni caída ni crecimiento, sino la latencia entre ambos.</p>
+      </div>
+
+      <div class="obra-col">
+        <img src="img/02-barro.jpg" alt="De donde vengo los primeros seres humanos fueron creados con barro">
+        <p class="ficha-obra"><em>"De donde vengo los primeros seres humanos fueron creados con barro"</em>, 2024, montaña de tierra 61.4 kg + fotografía</p>
+        <p class="obra-desc">Montaña de tierra cuyo peso equivale al mío —61.4 kg— instalada frente a una fotografía de mis manos hundidas en la tierra. El peso como dato biográfico. La tierra como material de origen y de regreso.</p>
+      </div>
+
+      <div class="obra-col">
+        <img src="img/02-sudor-y-rocio.jpg" alt="Sudor y rocío">
+        <p class="ficha-obra"><em>"Sudor y rocío"</em>, 2024, macro fotografía, 6 × 6 cm</p>
+        <p class="obra-desc">Acercamiento extremo a la superficie de la piel con sudor. A esta escala, el cuerpo se vuelve paisaje: la piel como tierra húmeda después de la lluvia, el sudor como rocío.</p>
+      </div>
+
+    </div>
+
+
+    <!-- ── YOU MAY ALSO LIKE ── -->
+    <div class="also-like">
+      <p class="also-like-title">You may also like</p>
+      <div class="also-grid">
+        <a class="also-item" href="en-suspension.html">
+          <img src="img/01-en-suspension.jpg" alt="En suspensión">
+          <p class="also-item-name">En suspensión</p>
+        </a>
+        <a class="also-item" href="index.html">
+          <img src="img/03-hay-rios-1.jpg" alt="Hay ríos en mi cuerpo">
+          <p class="also-item-name">Hay ríos en mi cuerpo</p>
+        </a>
+        <a class="also-item" href="index.html">
+          <img src="img/04-neblina-1.jpg" alt="La latencia del aliento por ser neblina">
+          <p class="also-item-name">La latencia del aliento por ser neblina</p>
+        </a>
+      </div>
+    </div>
+
+    <p class="powered-by">Powered by Adobe Portfolio</p>
+
+  </div>
+</main>
+
+</body>
+</html>
