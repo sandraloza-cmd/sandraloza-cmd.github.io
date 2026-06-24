@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>En suspensión — Sandra Loza</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;1,400&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 14px;
+  color: #111111;
+  background: #ffffff;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── SIDEBAR ─── */
+.sidebar {
+  width: 180px;
+  flex-shrink: 0;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 44px 20px 48px 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-name {
+  font-family: 'Inter', 'Helvetica Neue', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #111111;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 40px;
+  line-height: 1.4;
+}
+.sidebar-name:hover { text-decoration: underline; }
+
+.sidebar-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #111111;
+  margin-bottom: 12px;
+}
+
+.sidebar-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  flex: 1;
+}
+.sidebar-links li a {
+  font-family: 'Inter', sans-serif;
+  font-size: 12.5px;
+  font-weight: 400;
+  color: #111111;
+  text-decoration: none;
+  line-height: 1.5;
+  display: block;
+  padding: 3px 0;
+}
+.sidebar-links li a:hover { text-decoration: underline; }
+.sidebar-links li a.active { text-decoration: underline; }
+
+.sidebar-contact {
+  font-family: 'Inter', sans-serif;
+  font-size: 12.5px;
+  font-weight: 400;
+  color: #111111;
+  text-decoration: none;
+  margin-top: 32px;
+  padding-top: 24px;
+  display: block;
+}
+.sidebar-contact:hover { text-decoration: underline; }
+
+/* ─── MAIN ─── */
+.main {
+  flex: 1;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 64px 0 100px;
+}
+
+.content {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+/* ─── PROJECT HEADER ─── */
+.project-title {
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 30px;
+  font-weight: 400;
+  font-style: normal;
+  text-align: center;
+  margin-bottom: 10px;
+  line-height: 1.2;
+  color: #111111;
+}
+.project-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: #888888;
+  text-align: center;
+  margin-bottom: 56px;
+  line-height: 1.5;
+}
+
+/* ─── TWO-COLUMN TEXT ─── */
+.text-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 56px;
+  line-height: 1.78;
+  font-size: 14px;
+  color: #111111;
+}
+
+/* ─── GALLERY ─── */
+.gallery-section {
+  margin-bottom: 52px;
+}
+
+.img-row {
+  margin-bottom: 8px;
+}
+.img-row:last-child { margin-bottom: 0; }
+
+/* full width */
+.img-full img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  display: block;
+}
+
+/* two side by side */
+.img-duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.img-duo img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  display: block;
+}
+
+/* three in a row */
+.img-trio {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+.img-trio img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+}
+
+/* portrait, centered narrow */
+.img-portrait {
+  width: 58%;
+  margin: 0 auto;
+}
+.img-portrait img {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+/* ─── SECONDARY TEXT ─── */
+.text-interlude {
+  padding: 52px 0;
+}
+
+/* ─── INSTRUCTIONAL ─── */
+.how-to {
+  border-top: 0.5px solid #e6e6e6;
+  border-bottom: 0.5px solid #e6e6e6;
+  padding: 36px 0;
+  margin-bottom: 56px;
+}
+.how-to-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #111111;
+  margin-bottom: 16px;
+}
+.how-to ol {
+  list-style: decimal;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-size: 14px;
+  line-height: 1.68;
+  color: #111111;
+}
+
+/* ─── YOU MAY ALSO LIKE ─── */
+.also-like {
+  margin-top: 80px;
+  padding-top: 48px;
+  border-top: 0.5px solid #e6e6e6;
+}
+.also-like-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: #888888;
+  text-align: center;
+  margin-bottom: 24px;
+}
+.also-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+.also-item {
+  text-decoration: none;
+  color: #111111;
+  display: block;
+}
+.also-item img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 8px;
+}
+.also-item-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  text-align: center;
+  color: #888888;
+  line-height: 1.4;
+}
+.also-item:hover .also-item-name { color: #111; text-decoration: underline; }
+
+/* ─── POWERED BY ─── */
+.powered-by {
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+  font-size: 11px;
+  color: #cccccc;
+  margin-top: 56px;
+  padding-bottom: 8px;
+}
+
+/* ─── SCROLLBAR ─── */
+.main::-webkit-scrollbar { width: 5px; }
+.main::-webkit-scrollbar-track { background: transparent; }
+.main::-webkit-scrollbar-thumb { background: #ddd; border-radius: 3px; }
+
+</style>
+</head>
+<body>
+
+<!-- ── SIDEBAR ── -->
+<aside class="sidebar">
+
+  <a class="sidebar-name" href="index.html">Sandra Loza</a>
+
+  <p class="sidebar-label">Work</p>
+
+  <ul class="sidebar-links">
+    <li><a href="en-suspension.html" class="active">En suspensión</a></li>
+    <li><a href="index.html">La latencia del aliento<br>por ser neblina</a></li>
+    <li><a href="index.html">Hay ríos en mi cuerpo</a></li>
+    <li><a href="index.html">Mi cuerpo me dijo que<br>nací de una roca</a></li>
+    <li><a href="index.html">Ojos que conocieron<br>la misma guerra</a></li>
+    <li><a href="index.html">Ventanas hacia el amor<br>y la pérdida</a></li>
+    <li><a href="index.html">First House</a></li>
+    <li><a href="index.html">Polinizadora / Recolectora</a></li>
+    <li><a href="index.html">Fórmula</a></li>
+  </ul>
+
+  <a class="sidebar-contact" href="mailto:isandrahl@gmail.com">Contact</a>
+
+</aside>
+
+
+<!-- ── MAIN CONTENT ── -->
+<main class="main">
+  <div class="content">
+
+    <h1 class="project-title">En suspensión</h1>
+    <p class="project-subtitle">Cuarto de proyectos, Programa Educativo SOMA, 2026</p>
+
+
+    <!-- Texto principal en dos columnas -->
+    <div class="text-cols">
+      <p>La resina fue el punto de entrada: una gota encontrada durante una deriva en el bosque, con un bosque entero reflejado e invertido en su interior. A partir de ese hallazgo, exploré este material como materia de transición — entre cuerpo y territorio, entre la fijación y el derrame, entre el vestigio orgánico y el dispositivo óptico.</p>
+      <p>Resin was the point of entry: a drop found during a drift through the forest, with an entire forest reflected and inverted within it. From that discovery, I explored this material as a matter of transition — between body and territory, between fixation and overflow, between organic vestige and optical device.</p>
+    </div>
+
+
+    <!-- Bloque 1: imagen hero + piezas de resina -->
+    <div class="gallery-section">
+      <div class="img-row img-full">
+        <img src="img/01-en-suspension.jpg" alt="En suspensión">
+      </div>
+      <div class="img-row img-duo">
+        <img src="img/01-latido-encapsulado.jpg" alt="Latido encapsulado">
+        <img src="img/01-protesis-de-rama.jpg" alt="Prótesis de rama">
+      </div>
+      <div class="img-row img-trio">
+        <img src="img/01-protesis-de-rama2.jpg" alt="Prótesis de rama — detalle 1">
+        <img src="img/01-protesis-de-rama3.jpg" alt="Prótesis de rama — detalle 2">
+        <img src="img/01-protesis-de-rama4.jpg" alt="Prótesis de rama — detalle 3">
+      </div>
+    </div>
+
+
+    <!-- Texto secundario -->
+    <div class="text-cols text-interlude">
+      <p>El proyecto reúne objetos escultóricos en resina epóxica, cámaras estenopeicas construidas manualmente y lentes de resina natural moldeados a mano. No me interesó separar escultura y fotografía, sino pensar ambas desde la misma lógica material: la resina como superficie que atrapa, altera y transmite la luz antes de que llegue a cualquier soporte sensible.</p>
+      <p>The project brings together sculptural objects in epoxy resin, hand-built pinhole cameras, and lenses of natural resin molded by hand. My interest was not in separating sculpture and photography, but in thinking both through the same material logic: resin as a surface that catches, alters, and transmits light before it reaches any sensitive support.</p>
+    </div>
+
+
+    <!-- Bloque 2: árbol que exuda -->
+    <div class="gallery-section">
+      <div class="img-row img-full">
+        <img src="img/01-arbol-que-exuda.jpg" alt="Árbol que exuda">
+      </div>
+      <div class="img-row img-duo">
+        <img src="img/01-arbol-que-exuda2.jpg" alt="Árbol que exuda — detalle 1">
+        <img src="img/01-arbol-que-exuda3.jpg" alt="Árbol que exuda — detalle 2">
+      </div>
+    </div>
+
+
+    <!-- Bloque 3: fotografía estenopeica y proceso -->
+    <div class="gallery-section">
+      <div class="img-row img-duo">
+        <img src="img/01-mirar-por-la-herida.jpg" alt="Mirar por la herida">
+        <img src="img/01-mirar-por-la-herida2.jpg" alt="Mirar por la herida — detalle">
+      </div>
+      <div class="img-row img-portrait">
+        <img src="img/01-camara.jpg" alt="Cámara estenopeica">
+      </div>
+      <div class="img-row img-duo">
+        <img src="img/01-resina.jpg" alt="Resina natural">
+        <img src="img/01-yo-trabajando.jpg" alt="En proceso">
+      </div>
+    </div>
+
+
+    <!-- Sección instruccional -->
+    <div class="how-to">
+      <p class="how-to-title">Cómo crear un lente de resina</p>
+      <ol>
+        <li>Recolectar resina natural de pino o copal en estado semilíquido durante una deriva en el bosque.</li>
+        <li>Filtrar las impurezas (corteza, insectos, partículas de polvo) usando tela fina de algodón.</li>
+        <li>Calentar levemente la resina al baño María para homogeneizar la densidad y eliminar burbujas.</li>
+        <li>Verter en un molde circular o biconvexo; dejar enfriar 24 horas en un lugar oscuro y sin corriente de aire.</li>
+        <li>Pulir con papel de lija de grano progresivo: 400 → 800 → 1200 → 2000, hasta obtener transparencia.</li>
+        <li>Montar el lente en la abertura de una cámara estenopeica construida con caja de cartón negro y papel fotográfico.</li>
+        <li>Exponer bajo luz natural. El espesor y las impurezas inherentes al material alterarán la imagen de formas no controladas.</li>
+      </ol>
+    </div>
+
+
+    <!-- Bloque 4: vistas de la exposición -->
+    <div class="gallery-section">
+      <div class="img-row img-full">
+        <img src="img/01-vista-general.jpg" alt="Vista general de la exposición">
+      </div>
+      <div class="img-row img-trio">
+        <img src="img/01-vista-general2.jpg" alt="Vista general 2">
+        <img src="img/01-vista-general3.jpg" alt="Vista general 3">
+        <img src="img/01-vista-general4.jpg" alt="Vista general 4">
+      </div>
+      <div class="img-row img-duo">
+        <img src="img/01-vista-general5.jpg" alt="Vista general 5">
+        <img src="img/01-vista-general6.jpg" alt="Vista general 6">
+      </div>
+    </div>
+
+
+    <!-- You may also like -->
+    <div class="also-like">
+      <p class="also-like-title">You may also like</p>
+      <div class="also-grid">
+        <a class="also-item" href="index.html">
+          <img src="img/02-latencia-cultivo.jpg" alt="Mi cuerpo me dijo que nací de una roca">
+          <p class="also-item-name">Mi cuerpo me dijo que nací de una roca</p>
+        </a>
+        <a class="also-item" href="index.html">
+          <img src="img/03-hay-rios-1.jpg" alt="Hay ríos en mi cuerpo">
+          <p class="also-item-name">Hay ríos en mi cuerpo</p>
+        </a>
+        <a class="also-item" href="index.html">
+          <img src="img/04-neblina-1.jpg" alt="La latencia del aliento por ser neblina">
+          <p class="also-item-name">La latencia del aliento por ser neblina</p>
+        </a>
+      </div>
+    </div>
+
+    <p class="powered-by">Powered by Adobe Portfolio</p>
+
+  </div>
+</main>
+
+</body>
+</html>

@@ -6,142 +6,175 @@
 <title>Sandra Loza</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;900&display=swap" rel="stylesheet">
 <style>
 
 /* ── RESET ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --black:      #000000;
-  --gray-mid:   #444444;
-  --gray-light: #888888;
-  --gray-faint: #D9D9D9;
-  --white:      #FFFFFF;
-  --soft:       #F2F2F2;
-  --green:      #89A61F;
-  --gold:       #CAA148;
-  --serif:      'EB Garamond', Georgia, serif;
-  --sans:       'Inter', 'Helvetica Neue', sans-serif;
-  --line:       0.5px solid #D9D9D9;
-  --ease:       0.3s ease;
+  --black:    #000000;
+  --gray-mid: #444444;
+  --gray:     #888888;
+  --faint:    #D9D9D9;
+  --white:    #FFFFFF;
+  --soft:     #F4F4F4;
+  --green:    #89A61F;
+  --gold:     #CAA148;
+  --serif:    'EB Garamond', Georgia, serif;
+  --sans:     'Inter', 'Helvetica Neue', sans-serif;
+  --line:     0.5px solid #D9D9D9;
+  --ease:     0.25s ease;
 }
-html, body {
-  height: 100%;
-  font-family: var(--sans);
-  background: var(--white);
-  color: var(--black);
-  font-size: 15px;
-  line-height: 1.6;
-  font-weight: 300;
-  -webkit-font-smoothing: antialiased;
-}
+html, body { height: 100%; font-family: var(--sans); background: var(--white); color: var(--black); font-size: 15px; line-height: 1.6; font-weight: 300; -webkit-font-smoothing: antialiased; }
 a { color: inherit; text-decoration: none; }
 
-/* ── HOMEPAGE ── */
+/* ── LANDING PAGE ── */
 #home {
+  background: #f0ece4;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 170px;
+  grid-template-rows: auto 1fr auto;
 }
-.index {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 5rem 5vw 3rem;
-}
-.project-list { list-style: none; }
-.project-list li { border-top: var(--line); }
-.project-list li:last-child { border-bottom: var(--line); }
-.project-link {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 2rem;
-  padding: 0.65rem 0;
-  cursor: pointer;
-}
-.project-num {
-  font-size: 11px;
-  color: var(--gray-light);
-  letter-spacing: 0.04em;
-  min-width: 22px;
-  transition: color var(--ease);
-}
-.project-title-text {
-  font-family: var(--serif);
-  font-size: clamp(1.55rem, 3vw, 2.6rem);
-  font-weight: 400;
-  line-height: 1.1;
-  flex: 1;
-  transition: color var(--ease);
-}
-.project-year {
-  font-size: 12px;
-  color: var(--gray-light);
-  white-space: nowrap;
-}
-.project-link:hover .project-title-text,
-.project-link:hover .project-num { color: var(--gold); }
 
-/* ── FOOTER ── */
-footer {
-  border-top: var(--line);
-  padding: 1.25rem 5vw;
+.lp-main {
+  grid-column: 1;
+  grid-row: 1 / 3;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.75rem;
+  flex-direction: column;
 }
-.footer-name {
-  font-family: var(--serif);
-  font-size: 15px;
-  font-weight: 400;
+
+.lp-hero {
+  padding: 7vh 8vw 5vh;
+  text-align: center;
 }
-.footer-links {
-  display: flex;
-  gap: 2rem;
-  align-items: center;
-}
-.footer-link {
-  font-size: 11px;
-  letter-spacing: 0.07em;
+.lp-title {
+  font-family: var(--sans);
+  font-weight: 900;
+  font-size: clamp(4rem, 12vw, 8.5rem);
   text-transform: uppercase;
-  color: var(--gray-light);
+  letter-spacing: -0.03em;
+  line-height: 0.88;
+  color: var(--black);
+}
+.lp-subtitle {
+  margin-top: 1.5rem;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #999;
+}
+
+.lp-projects {
+  padding: 1vh 5vw 4vh;
+  flex: 1;
+}
+.lp-project {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12.5px;
+  text-transform: uppercase;
+  line-height: 1.4;
   cursor: pointer;
-  transition: color var(--ease);
+  margin-bottom: 4.5vh;
+  display: block;
+  width: fit-content;
+  color: var(--black);
+  transition: opacity 0.2s;
+}
+.lp-project:hover { opacity: 0.45; }
+.lp-project-num { color: #aaa; margin-right: 0.55em; }
+.lp-project-meta { color: #888; display: block; padding-left: 1.55em; margin-top: 0.15em; }
+
+.lp-project:nth-child(1) { margin-left: 2%; }
+.lp-project:nth-child(2) { margin-left: 27%; }
+.lp-project:nth-child(3) { margin-left: 4%; }
+.lp-project:nth-child(4) { margin-left: 31%; }
+.lp-project:nth-child(5) { margin-left: 1%; }
+.lp-project:nth-child(6) { margin-left: 25%; }
+.lp-project:nth-child(7) { margin-left: 5%; }
+.lp-project:nth-child(8) { margin-left: 33%; }
+.lp-project:nth-child(9) { margin-left: 3%; }
+
+/* ── RIGHT PANEL ── */
+.lp-right {
+  grid-column: 2;
+  grid-row: 1 / 4;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: 3.5rem 1.5rem 2.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  border-left: 0.5px solid rgba(0,0,0,0.13);
+  background: #f0ece4;
+}
+.lp-photos {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.lp-photo {
+  width: 88px;
+  height: 122px;
+  object-fit: cover;
+  filter: grayscale(100%);
+  display: block;
+}
+.lp-nav-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.7rem;
+  margin-top: 1.5rem;
+}
+.lp-nav-btn {
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  font-variant: small-caps;
+  color: #7a1616;
+  text-decoration: underline;
+  cursor: pointer;
   background: none;
   border: none;
   font-family: var(--sans);
-  font-weight: 300;
+  text-align: right;
+  padding: 0;
+  transition: color var(--ease);
 }
-.footer-link:hover { color: var(--green); }
-.lang {
+.lp-nav-btn:hover { color: var(--black); }
+.lp-lang {
   display: flex;
-  border: var(--line);
-  border-radius: 2px;
-  overflow: hidden;
+  gap: 0.35rem;
+  margin-top: auto;
 }
-.lang button {
-  font-family: var(--sans);
-  font-size: 11px;
+.lp-lang button {
+  font-size: 10px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   background: transparent;
-  border: none;
-  padding: 3px 9px;
+  border: 0.5px solid #bbb;
+  padding: 2px 8px;
   cursor: pointer;
-  color: var(--gray-light);
-  transition: background var(--ease), color var(--ease);
+  color: #999;
+  font-family: var(--sans);
+  transition: background var(--ease), color var(--ease), border-color var(--ease);
 }
-.lang button.active { background: var(--green); color: var(--white); }
+.lp-lang button.active { background: var(--black); color: var(--white); border-color: var(--black); }
+
+/* ── FOOTER ── */
+.lp-footer {
+  grid-column: 1 / 3;
+  padding: 1.5rem 4vw;
+  border-top: 0.5px solid rgba(0,0,0,0.12);
+  font-size: 10.5px;
+  color: #aaa;
+  background: #f0ece4;
+}
 
 /* ── OVERLAY ── */
 .overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 200;
+  position: fixed; inset: 0; z-index: 200;
   background: var(--white);
   overflow-y: auto;
   transform: translateY(100%);
@@ -150,279 +183,237 @@ footer {
 }
 .overlay.open { transform: translateY(0); }
 
-/* overlay top bar */
 .overlay-nav {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: var(--white);
-  border-bottom: var(--line);
-  padding: 1.1rem 5vw;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  position: sticky; top: 0; z-index: 10;
+  background: var(--white); border-bottom: var(--line);
+  padding: 1rem 5vw;
+  display: flex; justify-content: space-between; align-items: center;
 }
 .overlay-back {
-  font-size: 11px;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  color: var(--gray-light);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  transition: color var(--ease);
-  user-select: none;
+  font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase;
+  color: var(--gray); cursor: pointer;
+  display: flex; align-items: center; gap: 0.4rem;
+  transition: color var(--ease); user-select: none;
+  background: none; border: none; font-family: var(--sans);
 }
 .overlay-back::before { content: '←'; }
 .overlay-back:hover { color: var(--green); }
 .overlay-close {
-  font-size: 22px;
-  color: var(--gray-light);
-  background: none;
-  border: none;
-  cursor: pointer;
-  line-height: 1;
-  padding: 0;
-  transition: color var(--ease);
+  font-size: 24px; color: var(--gray);
+  background: none; border: none; cursor: pointer;
+  line-height: 1; padding: 0; transition: color var(--ease);
 }
 .overlay-close:hover { color: var(--black); }
 
-/* overlay body */
-.overlay-body {
-  padding: 4rem 5vw 7rem;
-}
+.overlay-body { padding: 3.5rem 5vw 7rem; }
 
-/* project header */
+/* ── PROJECT HEADER ── */
 .project-header {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5rem;
-  padding-bottom: 4rem;
-  border-bottom: var(--line);
-  margin-bottom: 4rem;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 5rem; padding-bottom: 4rem;
+  border-bottom: var(--line); margin-bottom: 4rem;
 }
 .project-series {
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 1rem;
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1rem;
 }
 .project-name {
   font-family: var(--serif);
   font-size: clamp(1.5rem, 2.8vw, 2.2rem);
-  font-weight: 400;
-  line-height: 1.2;
-  margin-bottom: 2rem;
+  font-weight: 400; line-height: 1.2; margin-bottom: 2rem;
 }
 .ficha {
-  background: var(--soft);
-  border: var(--line);
-  padding: 1.25rem 1.5rem;
-  border-radius: 2px;
-  font-size: 12.5px;
-  line-height: 1;
+  background: var(--soft); border: var(--line);
+  padding: 1.25rem 1.5rem; border-radius: 2px; font-size: 12.5px; line-height: 1;
 }
-.ficha-row {
-  display: grid;
-  grid-template-columns: 80px 1fr;
-  gap: 0.75rem;
-  padding: 0.55rem 0;
-  border-bottom: var(--line);
-}
+.ficha-row { display: grid; grid-template-columns: 80px 1fr; gap: 0.75rem; padding: 0.55rem 0; border-bottom: var(--line); }
 .ficha-row:last-child { border-bottom: none; }
-.ficha-key { color: var(--gray-light); }
+.ficha-key { color: var(--gray); }
 .ficha-val { color: var(--gray-mid); }
-.stmt-es {
-  font-family: var(--serif);
-  font-size: 16px;
-  line-height: 1.8;
-  color: var(--black);
-  margin-bottom: 2rem;
-}
+.stmt-es { font-family: var(--serif); font-size: 16px; line-height: 1.8; color: var(--black); margin-bottom: 2rem; }
 .stmt-divider { width: 24px; height: 1px; background: var(--gold); margin-bottom: 1.5rem; }
-.stmt-en {
-  font-size: 13.5px;
-  line-height: 1.85;
-  color: var(--gray-mid);
-  font-style: italic;
+.stmt-en { font-size: 13.5px; line-height: 1.85; color: var(--gray-mid); font-style: italic; }
+
+/* ── SLIDESHOW ── */
+.slideshow { margin-top: 1rem; }
+.slides-container { position: relative; }
+.slide { display: none; }
+.slide.active { display: block; }
+
+.slide-img {
+  background: var(--soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  padding: 1rem;
+}
+.slide-img img {
+  max-width: 100%;
+  max-height: 80vh;
+  width: auto;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
-/* images */
-.img-wrap { overflow: hidden; }
-.img-wrap img { width: 100%; height: 100%; display: block; object-fit: cover; }
-.grid-1 { margin-bottom: 1px; }
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-bottom: 1px; }
-.grid-3 { display: grid; grid-template-columns: 2fr 1fr; gap: 1px; margin-bottom: 1px; }
-.grid-3col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; margin-bottom: 1px; }
-.grid-3-right { display: grid; grid-template-rows: 1fr 1fr; gap: 1px; }
-.aspect-landscape { aspect-ratio: 4/3; }
-.aspect-portrait  { aspect-ratio: 3/4; }
-.aspect-wide      { aspect-ratio: 16/7; }
-.caption-row {
+.slide-caption {
+  padding: 0.85rem 0;
+  border-bottom: var(--line);
   display: flex;
   justify-content: space-between;
-  padding: 0.75rem 0;
-  font-size: 11.5px;
-  color: var(--gray-light);
-  border-bottom: var(--line);
-  margin-bottom: 1px;
+  align-items: baseline;
+  gap: 1.5rem;
+  flex-wrap: wrap;
 }
-.video-link {
-  display: inline-flex;
+.slide-title {
+  font-family: var(--serif);
+  font-size: 14px;
+  color: var(--black);
+  font-style: italic;
+}
+.slide-info { font-size: 11.5px; color: var(--gray); }
+
+.slide-controls {
+  display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  color: var(--gray-mid);
-  border: var(--line);
-  padding: 0.6rem 1.1rem;
-  border-radius: 2px;
-  margin-top: 1.5rem;
+  gap: 1.5rem;
+  padding: 1rem 0 0;
+}
+.slide-btn {
+  background: none; border: none; cursor: pointer;
+  font-size: 18px; color: var(--gray-mid);
+  padding: 0; line-height: 1;
+  transition: color var(--ease);
+  font-family: var(--sans);
+}
+.slide-btn:hover { color: var(--green); }
+.slide-counter { font-size: 11px; color: var(--gray); letter-spacing: 0.04em; }
+
+.video-link {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 12px; letter-spacing: 0.04em; color: var(--gray-mid);
+  border: var(--line); padding: 0.6rem 1.1rem; border-radius: 2px; margin-top: 2rem;
   transition: background var(--ease), color var(--ease), border-color var(--ease);
 }
 .video-link:hover { background: var(--green); color: var(--white); border-color: var(--green); }
 .video-link::before { content: '▷'; font-size: 10px; }
 
-/* bio overlay */
+/* ── BIO OVERLAY ── */
 .bio-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 5rem; }
-.bio-photo { width: 100%; aspect-ratio: 3/4; overflow: hidden; }
+.bio-photo { width: 100%; aspect-ratio: 3/4; overflow: hidden; border: var(--line); }
 .bio-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.bio-links { margin-top: 2rem; }
-.bio-link {
-  display: block;
-  font-size: 12px;
-  color: var(--gray-mid);
-  padding: 0.5rem 0;
-  border-bottom: var(--line);
-  transition: color var(--ease);
-}
+.bio-links { margin-top: 1.5rem; }
+.bio-link { display: block; font-size: 12px; color: var(--gray-mid); padding: 0.5rem 0; border-bottom: var(--line); transition: color var(--ease); }
 .bio-link:hover { color: var(--green); }
-.bio-text {
-  font-family: var(--serif);
-  font-size: 18px;
-  line-height: 1.8;
-  color: var(--black);
-  margin-bottom: 3rem;
-}
+.bio-text { font-family: var(--serif); font-size: 18px; line-height: 1.8; color: var(--black); margin-bottom: 3rem; }
 .bio-text-en { display: none; }
 .bio-section { margin-top: 2.5rem; }
-.bio-section-title {
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 1rem;
-  padding-bottom: 0.75rem;
-  border-bottom: var(--line);
-}
-.bio-entry {
-  display: grid;
-  grid-template-columns: 80px 1fr;
-  gap: 1rem;
-  padding: 0.65rem 0;
-  font-size: 13px;
-  border-bottom: var(--line);
-  color: var(--gray-mid);
-}
+.bio-section-title { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: var(--line); }
+.bio-entry { display: grid; grid-template-columns: 80px 1fr; gap: 1rem; padding: 0.65rem 0; font-size: 13px; border-bottom: var(--line); color: var(--gray-mid); }
 .bio-entry:last-child { border-bottom: none; }
-.bio-entry-year { color: var(--gray-light); }
+.bio-entry-year { color: var(--gray); }
 .bio-entry-en { display: none; }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
   .project-header { grid-template-columns: 1fr; gap: 2.5rem; }
   .bio-grid { grid-template-columns: 1fr; }
-  .footer-links { gap: 1.25rem; }
-  .grid-3col { grid-template-columns: 1fr 1fr; }
+  #home { grid-template-columns: 1fr 130px; }
+  .lp-right { padding: 2rem 1rem; }
+  .lp-photo { width: 68px; height: 95px; }
+  .lp-title { font-size: clamp(3rem, 14vw, 5rem); }
+  .lp-project:nth-child(even) { margin-left: 18% !important; }
+  .lp-project:nth-child(odd) { margin-left: 2% !important; }
 }
 @media (max-width: 520px) {
-  .grid-2 { grid-template-columns: 1fr; }
-  .grid-3 { grid-template-columns: 1fr; }
-  .project-year { display: none; }
-  .overlay-body { padding: 2.5rem 5vw 5rem; }
+  #home { grid-template-columns: 1fr 110px; }
+  .lp-photos { display: none; }
+  .lp-right { padding: 1.5rem 0.75rem; justify-content: flex-start; height: auto; position: static; }
+  .lp-lang { margin-top: 1.5rem; }
 }
 </style>
 </head>
 <body>
 
-<!-- ════════════════════════════════
-     HOMEPAGE
-════════════════════════════════ -->
+<!-- ── LANDING PAGE ── -->
 <div id="home">
-  <div class="index">
-    <ul class="project-list">
 
-      <li><div class="project-link" onclick="openOverlay('en-suspension')">
-        <span class="project-num">01</span>
-        <span class="project-title-text" data-es="En suspensión" data-en="In Suspension">En suspensión</span>
-        <span class="project-year">2026</span>
-      </div></li>
+  <div class="lp-main">
+    <header class="lp-hero">
+      <div class="lp-title">SANDRA<br>LOZA</div>
+      <div class="lp-subtitle" data-es="Artista visual · México" data-en="Visual artist · Mexico">Artista visual · México</div>
+    </header>
 
-      <li><div class="project-link" onclick="openOverlay('mi-cuerpo')">
-        <span class="project-num">02</span>
-        <span class="project-title-text" data-es="Mi cuerpo me dijo que nací de una roca" data-en="My Body Told Me I Was Born from a Rock">Mi cuerpo me dijo que nací de una roca</span>
-        <span class="project-year">2024</span>
-      </div></li>
+    <div class="lp-projects">
 
-      <li><div class="project-link" onclick="openOverlay('hay-rios')">
-        <span class="project-num">03</span>
-        <span class="project-title-text" data-es="Hay ríos en mi cuerpo" data-en="There Are Rivers in My Body">Hay ríos en mi cuerpo</span>
-        <span class="project-year">2025</span>
-      </div></li>
+      <div class="lp-project" onclick="openOverlay('en-suspension')">
+        <span class="lp-project-num">01</span><span data-es="EN SUSPENSIÓN" data-en="IN SUSPENSION">EN SUSPENSIÓN</span>
+        <span class="lp-project-meta" data-es="Instalación · SOMA · 2026" data-en="Installation · SOMA · 2026">Instalación · SOMA · 2026</span>
+      </div>
 
-      <li><div class="project-link" onclick="openOverlay('latencia-neblina')">
-        <span class="project-num">04</span>
-        <span class="project-title-text" data-es="La latencia del aliento por ser neblina" data-en="The Latency of Breath to Become Fog">La latencia del aliento por ser neblina</span>
-        <span class="project-year">2025</span>
-      </div></li>
+      <div class="lp-project" onclick="openOverlay('mi-cuerpo')">
+        <span class="lp-project-num">02</span><span data-es="MI CUERPO ME DIJO QUE NACÍ DE UNA ROCA" data-en="MY BODY TOLD ME I WAS BORN FROM A ROCK">MI CUERPO ME DIJO QUE NACÍ DE UNA ROCA</span>
+        <span class="lp-project-meta" data-es="Fotografía, video, instalación · 2024" data-en="Photography, video, installation · 2024">Fotografía, video, instalación · 2024</span>
+      </div>
 
-      <li><div class="project-link" onclick="openOverlay('polinizadora')">
-        <span class="project-num">05</span>
-        <span class="project-title-text" data-es="Polinizadora / Recolectora" data-en="Pollinator / Collector">Polinizadora / Recolectora</span>
-        <span class="project-year">2025</span>
-      </div></li>
+      <div class="lp-project" onclick="openOverlay('hay-rios')">
+        <span class="lp-project-num">03</span><span data-es="HAY RÍOS EN MI CUERPO" data-en="THERE ARE RIVERS IN MY BODY">HAY RÍOS EN MI CUERPO</span>
+        <span class="lp-project-meta" data-es="Fotografía · 2025" data-en="Photography · 2025">Fotografía · 2025</span>
+      </div>
 
-      <li><div class="project-link" onclick="openOverlay('ojos')">
-        <span class="project-num">06</span>
-        <span class="project-title-text" data-es="Ojos que conocieron la misma guerra" data-en="Eyes That Knew the Same War">Ojos que conocieron la misma guerra</span>
-        <span class="project-year">2023</span>
-      </div></li>
+      <div class="lp-project" onclick="openOverlay('latencia-neblina')">
+        <span class="lp-project-num">04</span><span data-es="LA LATENCIA DEL ALIENTO POR SER NEBLINA" data-en="THE LATENCY OF BREATH TO BECOME FOG">LA LATENCIA DEL ALIENTO POR SER NEBLINA</span>
+        <span class="lp-project-meta" data-es="Fotografía · 2025" data-en="Photography · 2025">Fotografía · 2025</span>
+      </div>
 
-      <li><div class="project-link" onclick="openOverlay('ventanas')">
-        <span class="project-num">07</span>
-        <span class="project-title-text" data-es="Ventanas hacia el amor y la pérdida" data-en="Windows Toward Love and Loss">Ventanas hacia el amor y la pérdida</span>
-        <span class="project-year">2020–22</span>
-      </div></li>
+      <div class="lp-project" onclick="openOverlay('polinizadora')">
+        <span class="lp-project-num">05</span><span data-es="POLINIZADORA / RECOLECTORA" data-en="POLLINATOR / COLLECTOR">POLINIZADORA / RECOLECTORA</span>
+        <span class="lp-project-meta" data-es="Instalación · 2025" data-en="Installation · 2025">Instalación · 2025</span>
+      </div>
 
-      <li><div class="project-link" onclick="openOverlay('first-house')">
-        <span class="project-num">08</span>
-        <span class="project-title-text">First House</span>
-        <span class="project-year">2021</span>
-      </div></li>
+      <div class="lp-project" onclick="openOverlay('ojos')">
+        <span class="lp-project-num">06</span><span data-es="OJOS QUE CONOCIERON LA MISMA GUERRA" data-en="EYES THAT KNEW THE SAME WAR">OJOS QUE CONOCIERON LA MISMA GUERRA</span>
+        <span class="lp-project-meta" data-es="Fotografía · 2023" data-en="Photography · 2023">Fotografía · 2023</span>
+      </div>
 
-      <li><div class="project-link" onclick="openOverlay('formula')">
-        <span class="project-num">09</span>
-        <span class="project-title-text" data-es="Fórmula" data-en="Formula">Fórmula</span>
-        <span class="project-year">2021</span>
-      </div></li>
+      <div class="lp-project" onclick="openOverlay('ventanas')">
+        <span class="lp-project-num">07</span><span data-es="VENTANAS HACIA EL AMOR Y LA PÉRDIDA" data-en="WINDOWS TOWARD LOVE AND LOSS">VENTANAS HACIA EL AMOR Y LA PÉRDIDA</span>
+        <span class="lp-project-meta" data-es="Fotografía · 2020–22" data-en="Photography · 2020–22">Fotografía · 2020–22</span>
+      </div>
 
-    </ul>
+      <div class="lp-project" onclick="openOverlay('first-house')">
+        <span class="lp-project-num">08</span><span>FIRST HOUSE</span>
+        <span class="lp-project-meta" data-es="Fotografía · 2021" data-en="Photography · 2021">Fotografía · 2021</span>
+      </div>
+
+      <div class="lp-project" onclick="openOverlay('formula')">
+        <span class="lp-project-num">09</span><span data-es="FÓRMULA" data-en="FORMULA">FÓRMULA</span>
+        <span class="lp-project-meta" data-es="Videoperformance · 2021" data-en="Video performance · 2021">Videoperformance · 2021</span>
+      </div>
+
+    </div>
   </div>
 
-  <footer>
-    <span class="footer-name">Sandra Loza</span>
-    <div class="footer-links">
-      <button class="footer-link" onclick="openOverlay('bio')" data-es="Bio" data-en="Bio">Bio</button>
-      <a class="footer-link" href="mailto:isandrahl@gmail.com">Mail</a>
-      <a class="footer-link" href="https://instagram.com/xsandralozax" target="_blank">Instagram</a>
-      <div class="lang">
-        <button id="btn-es" class="active" onclick="setLang('es')">ES</button>
-        <button id="btn-en" onclick="setLang('en')">EN</button>
-      </div>
+  <div class="lp-right">
+    <div class="lp-photos">
+      <img class="lp-photo" src="img/_MG_7570.jpg" alt="">
+      <img class="lp-photo" src="img/_MG_7265.jpg" alt="">
+      <img class="lp-photo" src="img/_MG_9510.jpg" alt="">
     </div>
-  </footer>
+    <div class="lp-nav-links">
+      <button class="lp-nav-btn" onclick="openOverlay('bio')" data-es="SOBRE MÍ" data-en="ABOUT ME">SOBRE MÍ</button>
+      <a class="lp-nav-btn" href="mailto:isandrahl@gmail.com" data-es="CONTACTO" data-en="CONTACT">CONTACTO</a>
+      <a class="lp-nav-btn" href="https://instagram.com/xsandralozax" target="_blank">INSTAGRAM</a>
+    </div>
+    <div class="lp-lang">
+      <button id="btn-es" class="active" onclick="setLang('es')">ES</button>
+      <button id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+
+  <footer class="lp-footer">© 2026 Sandra Loza · sandraloza.com</footer>
+
 </div>
 
 
@@ -431,7 +422,7 @@ footer {
 ════════════════════════════════ -->
 <div id="overlay-en-suspension" class="overlay">
   <div class="overlay-nav">
-    <span class="overlay-back" onclick="closeOverlay()"><span data-es="Trabajo" data-en="Work">Trabajo</span></span>
+    <button class="overlay-back" onclick="closeOverlay()"><span data-es="Trabajo" data-en="Work">Trabajo</span></button>
     <button class="overlay-close" onclick="closeOverlay()">×</button>
   </div>
   <div class="overlay-body">
@@ -442,7 +433,8 @@ footer {
         <div class="ficha">
           <div class="ficha-row"><span class="ficha-key" data-es="Año" data-en="Year">Año</span><span class="ficha-val">2026</span></div>
           <div class="ficha-row"><span class="ficha-key" data-es="Materiales" data-en="Materials">Materiales</span><span class="ficha-val"><span data-es="Resina epóxica, ramas naturales, cámaras estenopeicas, lentes de resina natural, fotografías" data-en="Epoxy resin, natural branches, pinhole cameras, natural resin lenses, photographs">Resina epóxica, ramas naturales, cámaras estenopeicas, lentes de resina natural, fotografías</span></span></div>
-          <div class="ficha-row"><span class="ficha-key" data-es="Medidas varias" data-en="Dimensions various">Medidas varias</span><span class="ficha-val">6–65 cm</span></div>
+          <div class="ficha-row"><span class="ficha-key" data-es="Medidas" data-en="Dimensions">Medidas</span><span class="ficha-val">6–65 cm (varias)</span></div>
+          <div class="ficha-row"><span class="ficha-key" data-es="Lugar" data-en="Venue">Lugar</span><span class="ficha-val"><span data-es="Cuarto de proyectos · SOMA · CDMX" data-en="Project room · SOMA · Mexico City">Cuarto de proyectos · SOMA · CDMX</span></span></div>
         </div>
       </div>
       <div>
@@ -451,50 +443,93 @@ footer {
         <p class="stmt-en">The project brought together objects made with epoxy resin—a tree exuding resin, resin branches—alongside photographic experiments made with hand-built pinhole cameras and resin lenses I made myself. I was interested in thinking of resin as a material capable of condensing processes of fixation, encapsulation, breathing and overflow.</p>
       </div>
     </div>
-    <div>
-      <div class="grid-2">
-        <div class="img-wrap aspect-landscape"><img src="img/01-en-suspension.jpg" alt="En suspensión" loading="lazy"></div>
-        <div class="img-wrap aspect-landscape"><img src="img/01-latido-encapsulado.jpg" alt="Latido encapsulado" loading="lazy"></div>
+    <div class="slideshow">
+      <div class="slides-container">
+        <div class="slide active">
+          <div class="slide-img"><img src="img/01-en-suspension.jpg" alt="En suspensión" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="En suspensión" data-en="In Suspension">En suspensión</span><span class="slide-info">2026 · Gota de resina epóxica · 15 × 9 cm</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/01-latido-encapsulado.jpg" alt="Latido encapsulado" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Latido encapsulado" data-en="Encapsulated Heartbeat">Latido encapsulado</span><span class="slide-info">2026 · Resina epóxica, luz LED · 15 × 9 cm</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/01-protesis-de-rama.jpg" alt="Prótesis de rama" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Prótesis de rama" data-en="Branch Prosthesis">Prótesis de rama</span><span class="slide-info">2026 · Resina epóxica · 45 × 4 cm</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/01-protesis-de-rama2.jpg" alt="Prótesis de rama, detalle 1" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Prótesis de rama — detalle 1" data-en="Branch Prosthesis — detail 1">Prótesis de rama — detalle 1</span><span class="slide-info">2026 · Resina epóxica</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/01-protesis-de-rama3.jpg" alt="Prótesis de rama, detalle 2" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Prótesis de rama — detalle 2" data-en="Branch Prosthesis — detail 2">Prótesis de rama — detalle 2</span><span class="slide-info">2026 · Resina epóxica</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/01-protesis-de-rama4.jpg" alt="Prótesis de rama, detalle 3" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Prótesis de rama — detalle 3" data-en="Branch Prosthesis — detail 3">Prótesis de rama — detalle 3</span><span class="slide-info">2026 · Resina epóxica</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/01-arbol-que-exuda.jpg" alt="Árbol que exuda" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Árbol que exuda" data-en="Tree That Exudes">Árbol que exuda</span><span class="slide-info">2026 · Árbol natural intervenido con resina · 65 × 40 cm</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/01-arbol-que-exuda2.jpg" alt="Árbol que exuda, detalle 1" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Árbol que exuda — detalle 1" data-en="Tree That Exudes — detail 1">Árbol que exuda — detalle 1</span><span class="slide-info">2026 · Resina sobre rama natural</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/01-arbol-que-exuda3.jpg" alt="Árbol que exuda, detalle 2" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Árbol que exuda — detalle 2" data-en="Tree That Exudes — detail 2">Árbol que exuda — detalle 2</span><span class="slide-info">2026 · Resina sobre rama natural</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/01-mirar-por-la-herida.jpg" alt="Mirar por la herida" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Mirar por la herida" data-en="Looking Through the Wound">Mirar por la herida</span><span class="slide-info">2026 · Fotografía estenopeica con lente de resina natural · 6 × 9 cm</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/01-mirar-por-la-herida2.jpg" alt="Mirar por la herida, detalle" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Mirar por la herida — detalle" data-en="Looking Through the Wound — detail">Mirar por la herida — detalle</span><span class="slide-info">2026 · Fotografía estenopeica</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/01-camara.jpg" alt="Cámara estenopeica" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Cámara estenopeica" data-en="Pinhole Camera">Cámara estenopeica</span><span class="slide-info" data-es="2026 · Construida manualmente con lente de resina natural" data-en="2026 · Hand-built with natural resin lens">2026 · Construida manualmente con lente de resina natural</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/01-resina.jpg" alt="Resina natural" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Resina natural" data-en="Natural Resin">Resina natural</span><span class="slide-info" data-es="Material utilizado para los lentes de las cámaras" data-en="Material used for the camera lenses">Material utilizado para los lentes de las cámaras</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/01-vista-general.jpg" alt="Vista general 1" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Vista general de la exposición" data-en="Exhibition view">Vista general de la exposición</span><span class="slide-info" data-es="2026 · Cuarto de proyectos · Programa Educativo SOMA · CDMX" data-en="2026 · Project room · SOMA Educational Program · Mexico City">2026 · Cuarto de proyectos · Programa Educativo SOMA · CDMX</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/01-vista-general2.jpg" alt="Vista general 2" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Vista general 2" data-en="Exhibition view 2">Vista general 2</span><span class="slide-info">2026 · SOMA · CDMX</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/01-vista-general3.jpg" alt="Vista general 3" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Vista general 3" data-en="Exhibition view 3">Vista general 3</span><span class="slide-info">2026 · SOMA · CDMX</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/01-vista-general4.jpg" alt="Vista general 4" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Vista general 4" data-en="Exhibition view 4">Vista general 4</span><span class="slide-info">2026 · SOMA · CDMX</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/01-vista-general5.jpg" alt="Vista general 5" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Vista general 5" data-en="Exhibition view 5">Vista general 5</span><span class="slide-info">2026 · SOMA · CDMX</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/01-vista-general6.jpg" alt="Vista general 6" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Vista general 6" data-en="Exhibition view 6">Vista general 6</span><span class="slide-info">2026 · SOMA · CDMX</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/01-yo-trabajando.jpg" alt="En proceso" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="En proceso" data-en="In Process">En proceso</span><span class="slide-info" data-es="2026 · Documentación de trabajo" data-en="2026 · Work documentation">2026 · Documentación de trabajo</span></div>
+        </div>
       </div>
-      <div class="grid-1" style="margin-top:1px;">
-        <div class="img-wrap aspect-wide"><img src="img/01-protesis-de-rama.jpg" alt="Prótesis de rama" loading="lazy"></div>
-      </div>
-      <div class="grid-3col" style="margin-top:1px;">
-        <div class="img-wrap aspect-landscape"><img src="img/01-protesis-de-rama2.jpg" alt="Prótesis de rama, close up 1" loading="lazy"></div>
-        <div class="img-wrap aspect-landscape"><img src="img/01-protesis-de-rama3.jpg" alt="Prótesis de rama, close up 2" loading="lazy"></div>
-        <div class="img-wrap aspect-landscape"><img src="img/01-protesis-de-rama4.jpg" alt="Prótesis de rama, close up 3" loading="lazy"></div>
-      </div>
-      <div class="grid-1" style="margin-top:1px;">
-        <div class="img-wrap aspect-wide"><img src="img/01-arbol-que-exuda.jpg" alt="Árbol que exuda" loading="lazy"></div>
-      </div>
-      <div class="grid-2" style="margin-top:1px;">
-        <div class="img-wrap aspect-landscape"><img src="img/01-arbol-que-exuda2.jpg" alt="Árbol que exuda, close up 1" loading="lazy"></div>
-        <div class="img-wrap aspect-landscape"><img src="img/01-arbol-que-exuda3.jpg" alt="Árbol que exuda, close up 2" loading="lazy"></div>
-      </div>
-      <div class="caption-row" style="margin-top:2rem;">
-        <span data-es="Vistas generales de la exposición" data-en="Exhibition views">Vistas generales de la exposición</span>
-        <span>Cuarto de proyectos · SOMA · 2026</span>
-      </div>
-      <div class="grid-3col">
-        <div class="img-wrap aspect-landscape"><img src="img/01-vista-general.jpg" alt="Vista 1" loading="lazy"></div>
-        <div class="img-wrap aspect-landscape"><img src="img/01-vista-general2.jpg" alt="Vista 2" loading="lazy"></div>
-        <div class="img-wrap aspect-landscape"><img src="img/01-vista-general3.jpg" alt="Vista 3" loading="lazy"></div>
-      </div>
-      <div class="grid-3col" style="margin-top:1px;">
-        <div class="img-wrap aspect-landscape"><img src="img/01-vista-general4.jpg" alt="Vista 4" loading="lazy"></div>
-        <div class="img-wrap aspect-landscape"><img src="img/01-vista-general5.jpg" alt="Vista 5" loading="lazy"></div>
-        <div class="img-wrap aspect-landscape"><img src="img/01-vista-general6.jpg" alt="Vista 6" loading="lazy"></div>
-      </div>
-      <div class="grid-2" style="margin-top:1px;">
-        <div class="img-wrap aspect-landscape"><img src="img/01-mirar-por-la-herida.jpg" alt="Mirar por la herida" loading="lazy"></div>
-        <div class="img-wrap aspect-landscape"><img src="img/01-mirar-por-la-herida2.jpg" alt="Mirar por la herida, detalle" loading="lazy"></div>
-      </div>
-      <div class="grid-2" style="margin-top:1px;">
-        <div class="img-wrap aspect-landscape"><img src="img/01-camara.jpg" alt="Cámara estenopeica" loading="lazy"></div>
-        <div class="img-wrap aspect-landscape"><img src="img/01-resina.jpg" alt="Resina natural" loading="lazy"></div>
-      </div>
-      <div class="grid-1" style="margin-top:1px;">
-        <div class="img-wrap aspect-wide"><img src="img/01-yo-trabajando.jpg" alt="En proceso" loading="lazy"></div>
+      <div class="slide-controls">
+        <button class="slide-btn" onclick="prevSlide(this)">←</button>
+        <span class="slide-counter">1 / 20</span>
+        <button class="slide-btn" onclick="nextSlide(this)">→</button>
       </div>
     </div>
   </div>
@@ -506,7 +541,7 @@ footer {
 ════════════════════════════════ -->
 <div id="overlay-mi-cuerpo" class="overlay">
   <div class="overlay-nav">
-    <span class="overlay-back" onclick="closeOverlay()"><span data-es="Trabajo" data-en="Work">Trabajo</span></span>
+    <button class="overlay-back" onclick="closeOverlay()"><span data-es="Trabajo" data-en="Work">Trabajo</span></button>
     <button class="overlay-close" onclick="closeOverlay()">×</button>
   </div>
   <div class="overlay-body">
@@ -517,6 +552,7 @@ footer {
         <div class="ficha">
           <div class="ficha-row"><span class="ficha-key" data-es="Año" data-en="Year">Año</span><span class="ficha-val">2024</span></div>
           <div class="ficha-row"><span class="ficha-key" data-es="Exposición" data-en="Exhibition">Exposición</span><span class="ficha-val">Red de Arte Mexicana, CDMX</span></div>
+          <div class="ficha-row"><span class="ficha-key" data-es="Piezas" data-en="Works">Piezas</span><span class="ficha-val">12</span></div>
           <div class="ficha-row"><span class="ficha-key" data-es="Técnicas" data-en="Techniques">Técnicas</span><span class="ficha-val"><span data-es="Archival Pigment Print, video, terrario, cajas de petri, bacterias, tierra, musgo" data-en="Archival Pigment Print, video, terrarium, petri dishes, bacteria, soil, moss">Archival Pigment Print, video, terrario, cajas de petri, bacterias, tierra, musgo</span></span></div>
         </div>
       </div>
@@ -526,47 +562,74 @@ footer {
         <p class="stmt-en">I propose dissolving the boundary between human body and natural territory, historically divided: two entities in opposition, hierarchized, in a world that privileges production and seeks to control everything. My work is a silent resistance to this dichotomy. Each piece proposes the power of extending, folding, containing and molding my body to approach my territory of origin through its rhythms, latencies and its own forms of resistance.</p>
       </div>
     </div>
-    <div>
-      <div class="caption-row">
-        <span data-es="La latencia de mi cuerpo que se convierte en cultivo-cultura" data-en="The latency of my body becoming culture-cultivation">La latencia de mi cuerpo que se convierte en cultivo-cultura</span>
-        <span>190 × 420 cm · Archival Pigment Print y cajas de petri</span>
-      </div>
-      <div class="grid-1"><div class="img-wrap aspect-wide"><img src="img/02-latencia-cultivo.jpg" alt="La latencia de mi cuerpo que se convierte en cultivo-cultura" loading="lazy"></div></div>
-      <div class="grid-2" style="margin-top:1px;">
-        <div class="img-wrap aspect-landscape"><img src="img/02-suspension-de-un-bosque.jpg" alt="Suspensión de un bosque" loading="lazy"></div>
-        <div class="img-wrap aspect-landscape"><img src="img/02-todas-las-flores.jpg" alt="Todas las flores que caben en mis manos" loading="lazy"></div>
-      </div>
-      <div class="grid-1" style="margin-top:1px;">
-        <div class="img-wrap aspect-wide"><img src="img/02-todas-las-flores-detalle.jpg" alt="Todas las flores — detalle" loading="lazy"></div>
-      </div>
-      <div class="grid-3col" style="margin-top:1px;">
-        <div class="img-wrap aspect-landscape"><img src="img/02-ser-trueno1.jpg" alt="Ser trueno 1/3" loading="lazy"></div>
-        <div class="img-wrap aspect-landscape"><img src="img/02-ser-trueno2.jpg" alt="Ser trueno 2/3" loading="lazy"></div>
-        <div class="img-wrap aspect-landscape"><img src="img/02-ser-trueno3.jpg" alt="Ser trueno 3/3" loading="lazy"></div>
-      </div>
-      <div class="grid-1" style="margin-top:1px;">
-        <div class="img-wrap aspect-wide"><img src="img/02-hay-rios-II.jpg" alt="Hay ríos en mi cuerpo II" loading="lazy"></div>
-      </div>
-      <div class="grid-1" style="margin-top:1px;">
-        <div class="img-wrap aspect-wide"><img src="img/02-hay-rios-II-detalle.jpg" alt="Hay ríos en mi cuerpo II — detalle" loading="lazy"></div>
-      </div>
-      <div class="grid-3" style="margin-top:1px;">
-        <div class="img-wrap aspect-landscape"><img src="img/02-sostener-el-respiro.jpg" alt="Sostener el respiro, parar el latido II" loading="lazy"></div>
-        <div class="grid-3-right">
-          <div class="img-wrap"><img src="img/02-sudor-y-rocio.jpg" alt="Sudor y rocío" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
-          <div class="img-wrap"><img src="img/02-la-latencia-del-aliento.jpg" alt="La latencia del aliento" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+    <div class="slideshow">
+      <div class="slides-container">
+        <div class="slide active">
+          <div class="slide-img"><img src="img/02-latencia-cultivo.jpg" alt="La latencia de mi cuerpo que se convierte en cultivo-cultura" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="La latencia de mi cuerpo que se convierte en cultivo-cultura" data-en="The Latency of My Body Becoming Culture-Cultivation">La latencia de mi cuerpo que se convierte en cultivo-cultura</span><span class="slide-info">2024 · Archival Pigment Print y cajas de petri · 190 × 420 cm</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/02-suspension-de-un-bosque.jpg" alt="Suspensión de un bosque" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Suspensión de un bosque" data-en="Suspension of a Forest">Suspensión de un bosque</span><span class="slide-info">2024 · Archival Pigment Print · 76 × 114 cm</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/02-todas-las-flores.jpg" alt="Todas las flores que caben en mis manos" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Todas las flores que caben en mis manos" data-en="All the Flowers That Fit in My Hands">Todas las flores que caben en mis manos</span><span class="slide-info">2024 · Archival Pigment Print · 30 × 210 cm</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/02-todas-las-flores-detalle.jpg" alt="Todas las flores — detalle" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Todas las flores que caben en mis manos — detalle" data-en="All the Flowers That Fit in My Hands — detail">Todas las flores que caben en mis manos — detalle</span><span class="slide-info">2024 · Archival Pigment Print</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/02-ser-trueno1.jpg" alt="Ser trueno 1/3" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Ser trueno (1/3)" data-en="Being Thunder (1/3)">Ser trueno (1/3)</span><span class="slide-info">2024 · Archival Pigment Print · 31 × 137 cm</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/02-ser-trueno2.jpg" alt="Ser trueno 2/3" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Ser trueno (2/3)" data-en="Being Thunder (2/3)">Ser trueno (2/3)</span><span class="slide-info">2024 · Archival Pigment Print · 31 × 137 cm</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/02-ser-trueno3.jpg" alt="Ser trueno 3/3" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Ser trueno (3/3)" data-en="Being Thunder (3/3)">Ser trueno (3/3)</span><span class="slide-info">2024 · Archival Pigment Print · 31 × 137 cm</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/02-hay-rios-II.jpg" alt="Hay ríos en mi cuerpo II" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Hay ríos en mi cuerpo II" data-en="There Are Rivers in My Body II">Hay ríos en mi cuerpo II</span><span class="slide-info">2024 · Archival Pigment Print · 31 × 137 cm</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/02-hay-rios-II-detalle.jpg" alt="Hay ríos en mi cuerpo II — detalle" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Hay ríos en mi cuerpo II — detalle" data-en="There Are Rivers in My Body II — detail">Hay ríos en mi cuerpo II — detalle</span><span class="slide-info">2024 · Archival Pigment Print</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/02-sostener-el-respiro.jpg" alt="Sostener el respiro, parar el latido II" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Sostener el respiro, parar el latido II" data-en="Holding the Breath, Stopping the Beat II">Sostener el respiro, parar el latido II</span><span class="slide-info">2024 · Archival Pigment Print y roca · 51 × 76 cm</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/02-sudor-y-rocio.jpg" alt="Sudor y rocío" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Sudor y rocío" data-en="Sweat and Dew">Sudor y rocío</span><span class="slide-info">2024 · 6 × 6 cm</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/02-la-latencia-del-aliento.jpg" alt="La latencia del aliento" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="La latencia del aliento" data-en="The Latency of Breath">La latencia del aliento</span><span class="slide-info">2024 · 12 × 12 × 12 cm</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/02-la-latencia-del-aliento-detalle.jpg" alt="La latencia del aliento — detalle" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="La latencia del aliento — detalle" data-en="The Latency of Breath — detail">La latencia del aliento — detalle</span><span class="slide-info">2024</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/02-barro.jpg" alt="De donde vengo los primeros seres humanos fueron creados con barro" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="De donde vengo los primeros seres humanos fueron creados con barro" data-en="Where I Come From the First Humans Were Made of Clay">De donde vengo los primeros seres humanos fueron creados con barro</span><span class="slide-info" data-es="2024 · Montaña de tierra 61.4 kg + fotografía" data-en="2024 · Mountain of earth 61.4 kg + photograph">2024 · Montaña de tierra 61.4 kg + fotografía</span></div>
         </div>
       </div>
-      <div class="grid-1" style="margin-top:1px;">
-        <div class="img-wrap aspect-wide"><img src="img/02-la-latencia-del-aliento-detalle.jpg" alt="La latencia del aliento — detalle" loading="lazy"></div>
+      <div class="slide-controls">
+        <button class="slide-btn" onclick="prevSlide(this)">←</button>
+        <span class="slide-counter">1 / 14</span>
+        <button class="slide-btn" onclick="nextSlide(this)">→</button>
       </div>
-      <div class="grid-1" style="margin-top:1px;">
-        <div class="img-wrap" style="aspect-ratio:16/7;"><img src="img/02-barro.jpg" alt="De donde vengo los primeros seres humanos fueron creados con barro" loading="lazy"></div>
-      </div>
-      <a class="video-link" href="https://bit.ly/3D1DTpo" target="_blank">
-        <span data-es="Ver video: Intercambio de gases (1:03 min)" data-en="Watch video: Intercambio de gases (1:03 min)">Ver video: Intercambio de gases (1:03 min)</span>
-      </a>
     </div>
+    <a class="video-link" href="https://bit.ly/3D1DTpo" target="_blank">
+      <span data-es="Ver video: Intercambio de gases (1:03 min)" data-en="Watch video: Intercambio de gases (1:03 min)">Ver video: Intercambio de gases (1:03 min)</span>
+    </a>
   </div>
 </div>
 
@@ -576,7 +639,7 @@ footer {
 ════════════════════════════════ -->
 <div id="overlay-hay-rios" class="overlay">
   <div class="overlay-nav">
-    <span class="overlay-back" onclick="closeOverlay()"><span data-es="Trabajo" data-en="Work">Trabajo</span></span>
+    <button class="overlay-back" onclick="closeOverlay()"><span data-es="Trabajo" data-en="Work">Trabajo</span></button>
     <button class="overlay-close" onclick="closeOverlay()">×</button>
   </div>
   <div class="overlay-body">
@@ -587,6 +650,7 @@ footer {
         <div class="ficha">
           <div class="ficha-row"><span class="ficha-key" data-es="Año" data-en="Year">Año</span><span class="ficha-val">2025</span></div>
           <div class="ficha-row"><span class="ficha-key" data-es="Técnica" data-en="Technique">Técnica</span><span class="ficha-val"><span data-es="Fotografía, baja velocidad de obturación" data-en="Photography, slow shutter speed">Fotografía, baja velocidad de obturación</span></span></div>
+          <div class="ficha-row"><span class="ficha-key" data-es="Contexto" data-en="Context">Contexto</span><span class="ficha-val"><span data-es="Fotografías tomadas mientras nadaba" data-en="Photographs taken while swimming">Fotografías tomadas mientras nadaba</span></span></div>
         </div>
       </div>
       <div>
@@ -595,15 +659,33 @@ footer {
         <p class="stmt-en">I took these photographs while swimming, with another person synchronizing their movement in front of me. I used a slow shutter speed so the camera and body were in constant displacement. Water and movement drag the form until it becomes unstable, almost illegible, making the body merge with its aquatic surroundings.</p>
       </div>
     </div>
-    <div>
-      <div class="grid-1"><div class="img-wrap aspect-wide"><img src="img/03-hay-rios-panoramica.jpg" alt="Hay ríos en mi cuerpo" loading="lazy"></div></div>
-      <div class="grid-3col" style="margin-top:1px;">
-        <div class="img-wrap aspect-landscape"><img src="img/03-hay-rios-1.jpg" alt="Hay ríos en mi cuerpo 1" loading="lazy"></div>
-        <div class="img-wrap aspect-landscape"><img src="img/03-hay-rios-2.jpg" alt="Hay ríos en mi cuerpo 2" loading="lazy"></div>
-        <div class="img-wrap aspect-landscape"><img src="img/03-hay-rios-3.jpg" alt="Hay ríos en mi cuerpo 3" loading="lazy"></div>
+    <div class="slideshow">
+      <div class="slides-container">
+        <div class="slide active">
+          <div class="slide-img"><img src="img/03-hay-rios-panoramica.jpg" alt="Hay ríos en mi cuerpo" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Hay ríos en mi cuerpo" data-en="There Are Rivers in My Body">Hay ríos en mi cuerpo</span><span class="slide-info" data-es="2025 · Fotografía, baja velocidad de obturación" data-en="2025 · Photography, slow shutter speed">2025 · Fotografía, baja velocidad de obturación</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/03-hay-rios-1.jpg" alt="Hay ríos en mi cuerpo 1" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Hay ríos en mi cuerpo (2)" data-en="There Are Rivers in My Body (2)">Hay ríos en mi cuerpo (2)</span><span class="slide-info">2025</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/03-hay-rios-2.jpg" alt="Hay ríos en mi cuerpo 2" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Hay ríos en mi cuerpo (3)" data-en="There Are Rivers in My Body (3)">Hay ríos en mi cuerpo (3)</span><span class="slide-info">2025</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/03-hay-rios-3.jpg" alt="Hay ríos en mi cuerpo 3" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Hay ríos en mi cuerpo (4)" data-en="There Are Rivers in My Body (4)">Hay ríos en mi cuerpo (4)</span><span class="slide-info">2025</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/03-hay-rios-4.jpg" alt="Hay ríos en mi cuerpo 4" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Hay ríos en mi cuerpo (5)" data-en="There Are Rivers in My Body (5)">Hay ríos en mi cuerpo (5)</span><span class="slide-info">2025</span></div>
+        </div>
       </div>
-      <div class="grid-2" style="margin-top:1px;">
-        <div class="img-wrap aspect-landscape"><img src="img/03-hay-rios-4.jpg" alt="Hay ríos en mi cuerpo 4" loading="lazy"></div>
+      <div class="slide-controls">
+        <button class="slide-btn" onclick="prevSlide(this)">←</button>
+        <span class="slide-counter">1 / 5</span>
+        <button class="slide-btn" onclick="nextSlide(this)">→</button>
       </div>
     </div>
   </div>
@@ -615,7 +697,7 @@ footer {
 ════════════════════════════════ -->
 <div id="overlay-latencia-neblina" class="overlay">
   <div class="overlay-nav">
-    <span class="overlay-back" onclick="closeOverlay()"><span data-es="Trabajo" data-en="Work">Trabajo</span></span>
+    <button class="overlay-back" onclick="closeOverlay()"><span data-es="Trabajo" data-en="Work">Trabajo</span></button>
     <button class="overlay-close" onclick="closeOverlay()">×</button>
   </div>
   <div class="overlay-body">
@@ -626,6 +708,7 @@ footer {
         <div class="ficha">
           <div class="ficha-row"><span class="ficha-key" data-es="Año" data-en="Year">Año</span><span class="ficha-val">2025</span></div>
           <div class="ficha-row"><span class="ficha-key" data-es="Técnica" data-en="Technique">Técnica</span><span class="ficha-val"><span data-es="Fotografía analógica, condensación en lente" data-en="Analog photography, lens condensation">Fotografía analógica, condensación en lente</span></span></div>
+          <div class="ficha-row"><span class="ficha-key" data-es="Proceso" data-en="Process">Proceso</span><span class="ficha-val"><span data-es="Vaho soltado sobre el lente durante la toma" data-en="Breath exhaled onto the lens during the shot">Vaho soltado sobre el lente durante la toma</span></span></div>
         </div>
       </div>
       <div>
@@ -634,11 +717,25 @@ footer {
         <p class="stmt-en">I took these photographs in fully sunlit spaces. During the shot, I exhaled directly onto the lens, covering it with condensation. The image records this physical interference: steam obscures the landscape and produces an artificial fog. The work emerges from insisting on the body as a material agent that alters the normal conditions of photography.</p>
       </div>
     </div>
-    <div>
-      <div class="grid-1"><div class="img-wrap aspect-wide"><img src="img/04-neblina-panoramica.jpg" alt="La latencia del aliento por ser neblina" loading="lazy"></div></div>
-      <div class="grid-2" style="margin-top:1px;">
-        <div class="img-wrap aspect-landscape"><img src="img/04-neblina-1.jpg" alt="La latencia del aliento 1" loading="lazy"></div>
-        <div class="img-wrap aspect-landscape"><img src="img/04-neblina-2.jpg" alt="La latencia del aliento 2" loading="lazy"></div>
+    <div class="slideshow">
+      <div class="slides-container">
+        <div class="slide active">
+          <div class="slide-img"><img src="img/04-neblina-panoramica.jpg" alt="La latencia del aliento por ser neblina" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="La latencia del aliento por ser neblina" data-en="The Latency of Breath to Become Fog">La latencia del aliento por ser neblina</span><span class="slide-info" data-es="2025 · Fotografía analógica, condensación en lente" data-en="2025 · Analog photography, lens condensation">2025 · Fotografía analógica, condensación en lente</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/04-neblina-1.jpg" alt="La latencia del aliento 1" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="La latencia del aliento por ser neblina (2)" data-en="The Latency of Breath to Become Fog (2)">La latencia del aliento por ser neblina (2)</span><span class="slide-info">2025</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/04-neblina-2.jpg" alt="La latencia del aliento 2" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="La latencia del aliento por ser neblina (3)" data-en="The Latency of Breath to Become Fog (3)">La latencia del aliento por ser neblina (3)</span><span class="slide-info">2025</span></div>
+        </div>
+      </div>
+      <div class="slide-controls">
+        <button class="slide-btn" onclick="prevSlide(this)">←</button>
+        <span class="slide-counter">1 / 3</span>
+        <button class="slide-btn" onclick="nextSlide(this)">→</button>
       </div>
     </div>
   </div>
@@ -650,7 +747,7 @@ footer {
 ════════════════════════════════ -->
 <div id="overlay-polinizadora" class="overlay">
   <div class="overlay-nav">
-    <span class="overlay-back" onclick="closeOverlay()"><span data-es="Trabajo" data-en="Work">Trabajo</span></span>
+    <button class="overlay-back" onclick="closeOverlay()"><span data-es="Trabajo" data-en="Work">Trabajo</span></button>
     <button class="overlay-close" onclick="closeOverlay()">×</button>
   </div>
   <div class="overlay-body">
@@ -660,7 +757,8 @@ footer {
         <h1 class="project-name"><span data-es="Polinizadora / Recolectora" data-en="Pollinator / Collector">Polinizadora / Recolectora</span></h1>
         <div class="ficha">
           <div class="ficha-row"><span class="ficha-key" data-es="Año" data-en="Year">Año</span><span class="ficha-val">2025</span></div>
-          <div class="ficha-row"><span class="ficha-key" data-es="Piezas" data-en="Pieces">Piezas</span><span class="ficha-val"><span data-es="39 fotografías de baja velocidad" data-en="39 slow shutter speed photographs">39 fotografías de baja velocidad</span></span></div>
+          <div class="ficha-row"><span class="ficha-key" data-es="Técnica" data-en="Technique">Técnica</span><span class="ficha-val"><span data-es="Fotografía, baja velocidad de obturación" data-en="Photography, slow shutter speed">Fotografía, baja velocidad de obturación</span></span></div>
+          <div class="ficha-row"><span class="ficha-key" data-es="Piezas" data-en="Works">Piezas</span><span class="ficha-val">39</span></div>
         </div>
       </div>
       <div>
@@ -669,11 +767,25 @@ footer {
         <p class="stmt-en">Selection of 39 slow shutter speed photographs. Sequence of images taken from my perspective, at the precise moment my body bends to collect or deposit seeds.</p>
       </div>
     </div>
-    <div>
-      <div class="grid-1"><div class="img-wrap aspect-wide"><img src="img/05-polinizadora-panoramica.jpg" alt="Polinizadora / Recolectora" loading="lazy"></div></div>
-      <div class="grid-2" style="margin-top:1px;">
-        <div class="img-wrap aspect-landscape"><img src="img/05-polinizadora-1.jpg" alt="Polinizadora 1" loading="lazy"></div>
-        <div class="img-wrap aspect-landscape"><img src="img/05-polinizadora-2.jpg" alt="Polinizadora 2" loading="lazy"></div>
+    <div class="slideshow">
+      <div class="slides-container">
+        <div class="slide active">
+          <div class="slide-img"><img src="img/05-polinizadora-panoramica.jpg" alt="Polinizadora / Recolectora" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Polinizadora / Recolectora" data-en="Pollinator / Collector">Polinizadora / Recolectora</span><span class="slide-info" data-es="2025 · Fotografía, baja velocidad de obturación · secuencia de 39 imágenes" data-en="2025 · Photography, slow shutter speed · sequence of 39 images">2025 · Fotografía, baja velocidad de obturación · secuencia de 39 imágenes</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/05-polinizadora-1.jpg" alt="Polinizadora 1" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Polinizadora / Recolectora (2)" data-en="Pollinator / Collector (2)">Polinizadora / Recolectora (2)</span><span class="slide-info">2025</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/05-polinizadora-2.jpg" alt="Polinizadora 2" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Polinizadora / Recolectora (3)" data-en="Pollinator / Collector (3)">Polinizadora / Recolectora (3)</span><span class="slide-info">2025</span></div>
+        </div>
+      </div>
+      <div class="slide-controls">
+        <button class="slide-btn" onclick="prevSlide(this)">←</button>
+        <span class="slide-counter">1 / 3</span>
+        <button class="slide-btn" onclick="nextSlide(this)">→</button>
       </div>
     </div>
   </div>
@@ -685,7 +797,7 @@ footer {
 ════════════════════════════════ -->
 <div id="overlay-ojos" class="overlay">
   <div class="overlay-nav">
-    <span class="overlay-back" onclick="closeOverlay()"><span data-es="Trabajo" data-en="Work">Trabajo</span></span>
+    <button class="overlay-back" onclick="closeOverlay()"><span data-es="Trabajo" data-en="Work">Trabajo</span></button>
     <button class="overlay-close" onclick="closeOverlay()">×</button>
   </div>
   <div class="overlay-body">
@@ -697,6 +809,7 @@ footer {
           <div class="ficha-row"><span class="ficha-key" data-es="Año" data-en="Year">Año</span><span class="ficha-val">2023</span></div>
           <div class="ficha-row"><span class="ficha-key" data-es="Exposición" data-en="Exhibition">Exposición</span><span class="ficha-val"><span data-es="Galería Espacio Alternativo del CENART, CDMX" data-en="Galería Espacio Alternativo del CENART, Mexico City">Galería Espacio Alternativo del CENART, CDMX</span></span></div>
           <div class="ficha-row"><span class="ficha-key" data-es="Técnica" data-en="Technique">Técnica</span><span class="ficha-val">Archival Pigment Print</span></div>
+          <div class="ficha-row"><span class="ficha-key" data-es="Tema" data-en="Theme">Tema</span><span class="ficha-val"><span data-es="Archivo familiar e historia personal" data-en="Family archive and personal history">Archivo familiar e historia personal</span></span></div>
         </div>
       </div>
       <div>
@@ -705,21 +818,41 @@ footer {
         <p class="stmt-en">A photographic exploration centered on my family history, bringing together family archive images with constructed photographs based on my childhood memories. About Alejandro, my half-brother who took on the responsibility of fatherhood for me from a young age, and the transmutation that a child's memories of their parents undergo once they experience adulthood. I hold the idea of home and family as a group of remnants, rubble as family, and the persistent search to gather the fragments of what was once destroyed.</p>
       </div>
     </div>
-    <div>
-      <div class="grid-2">
-        <div class="img-wrap aspect-landscape"><img src="img/06-caballo-nadando.jpg" alt="Caballo nadando" loading="lazy"></div>
-        <div class="img-wrap aspect-landscape"><img src="img/06-alejandro-asiento.jpg" alt="Alejandro abrazando asiento" loading="lazy"></div>
-      </div>
-      <div class="grid-3" style="margin-top:1px;">
-        <div class="img-wrap aspect-landscape"><img src="img/06-ante-la-presa.jpg" alt="Ante la presa" loading="lazy"></div>
-        <div class="grid-3-right">
-          <div class="img-wrap"><img src="img/06-bosque.jpg" alt="Bosque" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
-          <div class="img-wrap"><img src="img/06-arbol-roto.jpg" alt="Árbol roto" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+    <div class="slideshow">
+      <div class="slides-container">
+        <div class="slide active">
+          <div class="slide-img"><img src="img/06-caballo-nadando.jpg" alt="Caballo nadando" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Caballo nadando" data-en="Swimming Horse">Caballo nadando</span><span class="slide-info">2023 · Archival Pigment Print · 30 × 46 cm</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/06-alejandro-asiento.jpg" alt="Alejandro abrazando asiento" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Alejandro abrazando asiento" data-en="Alejandro Embracing a Chair">Alejandro abrazando asiento</span><span class="slide-info">2023 · Archival Pigment Print · 46 × 30 cm</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/06-ante-la-presa.jpg" alt="Ante la presa" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Ante la presa" data-en="Before the Dam">Ante la presa</span><span class="slide-info">2023 · Archival Pigment Print · 76 × 102 cm</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/06-bosque.jpg" alt="Bosque" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Bosque" data-en="Forest">Bosque</span><span class="slide-info">2023 · Archival Pigment Print · 46 × 30 cm</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/06-arbol-roto.jpg" alt="Árbol roto" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Árbol roto" data-en="Broken Tree">Árbol roto</span><span class="slide-info">2023 · Archival Pigment Print · 30 × 46 cm</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/06-buscando-la-raiz.jpg" alt="Buscando la raíz" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Buscando la raíz" data-en="Searching for the Root">Buscando la raíz</span><span class="slide-info">2023 · Archival Pigment Print · 30 × 46 cm</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/06-alejandro-y-sandra.jpg" alt="Alejandro y Sandra abrazándose" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Alejandro y Sandra abrazándose" data-en="Alejandro and Sandra Embracing">Alejandro y Sandra abrazándose</span><span class="slide-info">2023 · Archival Pigment Print · 30 × 46 cm</span></div>
         </div>
       </div>
-      <div class="grid-2" style="margin-top:1px;">
-        <div class="img-wrap aspect-landscape"><img src="img/06-buscando-la-raiz.jpg" alt="Buscando la raíz" loading="lazy"></div>
-        <div class="img-wrap aspect-landscape"><img src="img/06-alejandro-y-sandra.jpg" alt="Alejandro y Sandra abrazándose" loading="lazy"></div>
+      <div class="slide-controls">
+        <button class="slide-btn" onclick="prevSlide(this)">←</button>
+        <span class="slide-counter">1 / 7</span>
+        <button class="slide-btn" onclick="nextSlide(this)">→</button>
       </div>
     </div>
   </div>
@@ -731,7 +864,7 @@ footer {
 ════════════════════════════════ -->
 <div id="overlay-ventanas" class="overlay">
   <div class="overlay-nav">
-    <span class="overlay-back" onclick="closeOverlay()"><span data-es="Trabajo" data-en="Work">Trabajo</span></span>
+    <button class="overlay-back" onclick="closeOverlay()"><span data-es="Trabajo" data-en="Work">Trabajo</span></button>
     <button class="overlay-close" onclick="closeOverlay()">×</button>
   </div>
   <div class="overlay-body">
@@ -742,6 +875,7 @@ footer {
         <div class="ficha">
           <div class="ficha-row"><span class="ficha-key" data-es="Año" data-en="Year">Año</span><span class="ficha-val">2020–2022</span></div>
           <div class="ficha-row"><span class="ficha-key" data-es="Técnica" data-en="Technique">Técnica</span><span class="ficha-val">Archival Pigment Print</span></div>
+          <div class="ficha-row"><span class="ficha-key" data-es="Tema" data-en="Theme">Tema</span><span class="ficha-val"><span data-es="Intimidad, pérdida, silencio" data-en="Intimacy, loss, silence">Intimidad, pérdida, silencio</span></span></div>
         </div>
       </div>
       <div>
@@ -750,14 +884,29 @@ footer {
         <p class="stmt-en">Photographic series exploring love and loss through images that oscillate between the intimate and the silenced.</p>
       </div>
     </div>
-    <div>
-      <div class="grid-2">
-        <div class="img-wrap aspect-landscape"><img src="img/07-revolver.jpg" alt="Revólver" loading="lazy"></div>
-        <div class="img-wrap aspect-landscape"><img src="img/07-cuerpo.JPG" alt="Cuerpo" loading="lazy"></div>
+    <div class="slideshow">
+      <div class="slides-container">
+        <div class="slide active">
+          <div class="slide-img"><img src="img/07-revolver.jpg" alt="Revólver" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Revólver" data-en="Revolver">Revólver</span><span class="slide-info">2022 · Archival Pigment Print · 30 × 46 cm</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/07-cuerpo.JPG" alt="Cuerpo" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Cuerpo" data-en="Body">Cuerpo</span><span class="slide-info">2021 · Archival Pigment Print · 46 × 39 cm</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/07-alejandra-y-carlos.jpg" alt="Alejandra y Carlos" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title">Alejandra y Carlos</span><span class="slide-info">2021 · Archival Pigment Print · 30 × 46 cm</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/07-ventana-del-cupa.JPG" alt="Ventana del CUPA" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Ventana del CUPA" data-en="Window of CUPA">Ventana del CUPA</span><span class="slide-info">2020 · Archival Pigment Print · 30 × 46 cm</span></div>
+        </div>
       </div>
-      <div class="grid-2" style="margin-top:1px;">
-        <div class="img-wrap aspect-landscape"><img src="img/07-alejandra-y-carlos.jpg" alt="Alejandra y Carlos" loading="lazy"></div>
-        <div class="img-wrap aspect-landscape"><img src="img/07-ventana-del-cupa.JPG" alt="Ventana del CUPA" loading="lazy"></div>
+      <div class="slide-controls">
+        <button class="slide-btn" onclick="prevSlide(this)">←</button>
+        <span class="slide-counter">1 / 4</span>
+        <button class="slide-btn" onclick="nextSlide(this)">→</button>
       </div>
     </div>
   </div>
@@ -769,7 +918,7 @@ footer {
 ════════════════════════════════ -->
 <div id="overlay-first-house" class="overlay">
   <div class="overlay-nav">
-    <span class="overlay-back" onclick="closeOverlay()"><span data-es="Trabajo" data-en="Work">Trabajo</span></span>
+    <button class="overlay-back" onclick="closeOverlay()"><span data-es="Trabajo" data-en="Work">Trabajo</span></button>
     <button class="overlay-close" onclick="closeOverlay()">×</button>
   </div>
   <div class="overlay-body">
@@ -780,6 +929,7 @@ footer {
         <div class="ficha">
           <div class="ficha-row"><span class="ficha-key" data-es="Año" data-en="Year">Año</span><span class="ficha-val">2021</span></div>
           <div class="ficha-row"><span class="ficha-key" data-es="Materiales" data-en="Materials">Materiales</span><span class="ficha-val"><span data-es="Escombros de casas, transfer fotográfico, listón bordado, vistas satelitales sobre tela, sonido" data-en="House rubble, photographic transfer, embroidered ribbon, satellite views on fabric, sound">Escombros de casas, transfer fotográfico, listón bordado, vistas satelitales sobre tela, sonido</span></span></div>
+          <div class="ficha-row"><span class="ficha-key" data-es="Tema" data-en="Theme">Tema</span><span class="ficha-val"><span data-es="Hogar, familia, remanentes" data-en="Home, family, remnants">Hogar, familia, remanentes</span></span></div>
         </div>
       </div>
       <div>
@@ -788,13 +938,25 @@ footer {
         <p class="stmt-en">An approach to the idea of home and family as a group of remnants, using installation and the transfer of family archive photographs onto house rubble, and satellite views transferred onto fabric as a desperate search for the geographic location of home.</p>
       </div>
     </div>
-    <div>
-      <div class="grid-2">
-        <div class="img-wrap aspect-landscape"><img src="img/08-mama.jpg" alt="Mamá" loading="lazy"></div>
-        <div class="img-wrap aspect-landscape"><img src="img/08-alejandro-y-sandra.jpg" alt="Alejandro y Sandra" loading="lazy"></div>
+    <div class="slideshow">
+      <div class="slides-container">
+        <div class="slide active">
+          <div class="slide-img"><img src="img/08-mama.jpg" alt="Mamá" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Mamá" data-en="Mom">Mamá</span><span class="slide-info" data-es="2021 · Transfer fotográfico sobre escombro · 13 × 8 × 5 cm" data-en="2021 · Photographic transfer on rubble · 13 × 8 × 5 cm">2021 · Transfer fotográfico sobre escombro · 13 × 8 × 5 cm</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/08-alejandro-y-sandra.jpg" alt="Alejandro y Sandra" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title">Alejandro y Sandra</span><span class="slide-info" data-es="2021 · Transfer fotográfico sobre escombro · 13 × 20 × 10 cm" data-en="2021 · Photographic transfer on rubble · 13 × 20 × 10 cm">2021 · Transfer fotográfico sobre escombro · 13 × 20 × 10 cm</span></div>
+        </div>
+        <div class="slide">
+          <div class="slide-img"><img src="img/08-listón..jpg" alt="Carrete de listón" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title" data-es="Odio experimentar la sensación de querer ir a casa..." data-en="I Hate Feeling the Urge to Go Home...">Odio experimentar la sensación de querer ir a casa...</span><span class="slide-info" data-es="2021 · Carrete de listón hecho a mano con poema escrito · 15 × 6 cm" data-en="2021 · Hand-made ribbon reel with written poem · 15 × 6 cm">2021 · Carrete de listón hecho a mano con poema escrito · 15 × 6 cm</span></div>
+        </div>
       </div>
-      <div class="grid-1" style="margin-top:1px;">
-        <div class="img-wrap aspect-wide"><img src="img/08-listón..jpg" alt="Odio experimentar la sensación de querer ir a casa..." loading="lazy"></div>
+      <div class="slide-controls">
+        <button class="slide-btn" onclick="prevSlide(this)">←</button>
+        <span class="slide-counter">1 / 3</span>
+        <button class="slide-btn" onclick="nextSlide(this)">→</button>
       </div>
     </div>
   </div>
@@ -806,7 +968,7 @@ footer {
 ════════════════════════════════ -->
 <div id="overlay-formula" class="overlay">
   <div class="overlay-nav">
-    <span class="overlay-back" onclick="closeOverlay()"><span data-es="Trabajo" data-en="Work">Trabajo</span></span>
+    <button class="overlay-back" onclick="closeOverlay()"><span data-es="Trabajo" data-en="Work">Trabajo</span></button>
     <button class="overlay-close" onclick="closeOverlay()">×</button>
   </div>
   <div class="overlay-body">
@@ -818,6 +980,7 @@ footer {
           <div class="ficha-row"><span class="ficha-key" data-es="Año" data-en="Year">Año</span><span class="ficha-val">2021</span></div>
           <div class="ficha-row"><span class="ficha-key" data-es="Duración" data-en="Duration">Duración</span><span class="ficha-val">14:11 min</span></div>
           <div class="ficha-row"><span class="ficha-key" data-es="Intérpretes" data-en="Performers">Intérpretes</span><span class="ficha-val">6</span></div>
+          <div class="ficha-row"><span class="ficha-key" data-es="Cámara" data-en="Camera">Cámara</span><span class="ficha-val"><span data-es="Posición fija, ángulo de cámara de seguridad" data-en="Fixed position, surveillance camera angle">Posición fija, ángulo de cámara de seguridad</span></span></div>
         </div>
       </div>
       <div>
@@ -826,14 +989,22 @@ footer {
         <p class="stmt-en">Video record of the performance Formula, repeated for variable durations in an empty room. The camera position emulates surveillance cameras. Six people physically translate a looping set of words: up, heartbeat, motor, boxes, handcuffs, prison, heavy objects, mirror. Performers repeat the exercise in increasingly shorter times until exhaustion renders the movements erratic and asynchronous. It concludes with the bodies on the floor.</p>
       </div>
     </div>
-    <div>
-      <div class="grid-1">
-        <div class="img-wrap aspect-wide"><img src="img/09-formula.png" alt="Fórmula — documentación del performance" loading="lazy"></div>
+    <div class="slideshow">
+      <div class="slides-container">
+        <div class="slide active">
+          <div class="slide-img"><img src="img/09-formula.png" alt="Fórmula" loading="lazy"></div>
+          <div class="slide-caption"><span class="slide-title">Fórmula</span><span class="slide-info" data-es="2021 · Documentación del performance · Vista de cámara de seguridad" data-en="2021 · Performance documentation · Surveillance camera view">2021 · Documentación del performance · Vista de cámara de seguridad</span></div>
+        </div>
       </div>
-      <a class="video-link" href="https://bit.ly/3YCOY7S" target="_blank">
-        <span data-es="Ver video completo (14:11 min)" data-en="Watch full video (14:11 min)">Ver video completo (14:11 min)</span>
-      </a>
+      <div class="slide-controls">
+        <button class="slide-btn" onclick="prevSlide(this)">←</button>
+        <span class="slide-counter">1 / 1</span>
+        <button class="slide-btn" onclick="nextSlide(this)">→</button>
+      </div>
     </div>
+    <a class="video-link" href="https://bit.ly/3YCOY7S" target="_blank">
+      <span data-es="Ver video completo (14:11 min)" data-en="Watch full video (14:11 min)">Ver video completo (14:11 min)</span>
+    </a>
   </div>
 </div>
 
@@ -843,7 +1014,7 @@ footer {
 ════════════════════════════════ -->
 <div id="overlay-bio" class="overlay">
   <div class="overlay-nav">
-    <span class="overlay-back" onclick="closeOverlay()"><span data-es="Inicio" data-en="Home">Inicio</span></span>
+    <button class="overlay-back" onclick="closeOverlay()"><span data-es="Inicio" data-en="Home">Inicio</span></button>
     <button class="overlay-close" onclick="closeOverlay()">×</button>
   </div>
   <div class="overlay-body">
@@ -855,6 +1026,7 @@ footer {
         <div class="bio-links">
           <a class="bio-link" href="mailto:isandrahl@gmail.com">isandrahl@gmail.com</a>
           <a class="bio-link" href="https://instagram.com/xsandralozax" target="_blank">@xsandralozax</a>
+          <a class="bio-link" href="https://sandraloza.com">sandraloza.com</a>
         </div>
       </div>
       <div>
@@ -863,74 +1035,36 @@ footer {
 
         <div class="bio-section">
           <p class="bio-section-title" data-es="Educación" data-en="Education">Educación</p>
-          <div class="bio-entry">
-            <span class="bio-entry-year">2019–24</span>
-            <span class="bio-entry-es">ENPEG "La Esmeralda", Ciudad de México</span>
-            <span class="bio-entry-en">ENPEG "La Esmeralda", Mexico City</span>
-          </div>
+          <div class="bio-entry"><span class="bio-entry-year">2019–24</span><span class="bio-entry-es">ENPEG "La Esmeralda", Ciudad de México</span><span class="bio-entry-en">ENPEG "La Esmeralda", Mexico City</span></div>
         </div>
 
         <div class="bio-section">
           <p class="bio-section-title" data-es="Exposiciones individuales" data-en="Solo exhibitions">Exposiciones individuales</p>
-          <div class="bio-entry">
-            <span class="bio-entry-year">2024</span>
-            <span class="bio-entry-es">Red de Arte Mexicana, CDMX</span>
-            <span class="bio-entry-en">Red de Arte Mexicana, Mexico City</span>
-          </div>
-          <div class="bio-entry">
-            <span class="bio-entry-year">2023</span>
-            <span class="bio-entry-es">Ojos que conocieron la misma guerra · Galería Espacio Alternativo, CENART, CDMX</span>
-            <span class="bio-entry-en">Eyes That Knew the Same War · Galería Espacio Alternativo, CENART, Mexico City</span>
-          </div>
+          <div class="bio-entry"><span class="bio-entry-year">2024</span><span class="bio-entry-es">Red de Arte Mexicana, CDMX</span><span class="bio-entry-en">Red de Arte Mexicana, Mexico City</span></div>
+          <div class="bio-entry"><span class="bio-entry-year">2023</span><span class="bio-entry-es">Ojos que conocieron la misma guerra · Galería Espacio Alternativo, CENART, CDMX</span><span class="bio-entry-en">Eyes That Knew the Same War · Galería Espacio Alternativo, CENART, Mexico City</span></div>
         </div>
 
         <div class="bio-section">
           <p class="bio-section-title" data-es="Exposiciones colectivas" data-en="Group exhibitions">Exposiciones colectivas</p>
-          <div class="bio-entry">
-            <span class="bio-entry-year">2024</span>
-            <span class="bio-entry-es">HABITAT, El ecosentir de la tierra · The Art Pavilion, Mile End Park, Londres</span>
-            <span class="bio-entry-en">HABITAT, El ecosentir de la tierra · The Art Pavilion, Mile End Park, London</span>
-          </div>
+          <div class="bio-entry"><span class="bio-entry-year">2024</span><span class="bio-entry-es">HABITAT, El ecosentir de la tierra · The Art Pavilion, Mile End Park, Londres</span><span class="bio-entry-en">HABITAT, El ecosentir de la tierra · The Art Pavilion, Mile End Park, London</span></div>
         </div>
 
         <div class="bio-section">
           <p class="bio-section-title" data-es="Residencias y becas" data-en="Residencies and grants">Residencias y becas</p>
-          <div class="bio-entry">
-            <span class="bio-entry-year">2025</span>
-            <span class="bio-entry-es">Residencia · Museo de Arte Moderno de Chiloé, Chile — FONCA</span>
-            <span class="bio-entry-en">Residency · Museo de Arte Moderno de Chiloé, Chile — FONCA</span>
-          </div>
-          <div class="bio-entry">
-            <span class="bio-entry-year">2023</span>
-            <span class="bio-entry-es">Jóvenes Creadores — FONCA</span>
-            <span class="bio-entry-en">Young Creators grant — FONCA</span>
-          </div>
+          <div class="bio-entry"><span class="bio-entry-year">2025</span><span class="bio-entry-es">Residencia · Museo de Arte Moderno de Chiloé, Chile — FONCA</span><span class="bio-entry-en">Residency · Museo de Arte Moderno de Chiloé, Chile — FONCA</span></div>
+          <div class="bio-entry"><span class="bio-entry-year">2023</span><span class="bio-entry-es">Jóvenes Creadores — FONCA</span><span class="bio-entry-en">Young Creators grant — FONCA</span></div>
         </div>
 
         <div class="bio-section">
           <p class="bio-section-title" data-es="Programas" data-en="Programs">Programas</p>
-          <div class="bio-entry">
-            <span class="bio-entry-year">2025–</span>
-            <span class="bio-entry-es">Programa Educativo SOMA, Ciudad de México</span>
-            <span class="bio-entry-en">SOMA Educational Program, Mexico City</span>
-          </div>
-          <div class="bio-entry">
-            <span class="bio-entry-year">2024–</span>
-            <span class="bio-entry-es">Proyecto Imaginario, Ciudad de México</span>
-            <span class="bio-entry-en">Proyecto Imaginario, Mexico City</span>
-          </div>
+          <div class="bio-entry"><span class="bio-entry-year">2025–</span><span class="bio-entry-es">Programa Educativo SOMA, Ciudad de México</span><span class="bio-entry-en">SOMA Educational Program, Mexico City</span></div>
+          <div class="bio-entry"><span class="bio-entry-year">2024–</span><span class="bio-entry-es">Proyecto Imaginario, Ciudad de México</span><span class="bio-entry-en">Proyecto Imaginario, Mexico City</span></div>
         </div>
 
         <div class="bio-section">
           <p class="bio-section-title" data-es="Publicaciones" data-en="Press">Publicaciones</p>
-          <div class="bio-entry">
-            <span class="bio-entry-year"></span>
-            <span>Fisheye Magazine</span>
-          </div>
-          <div class="bio-entry">
-            <span class="bio-entry-year"></span>
-            <span>Vist Projects</span>
-          </div>
+          <div class="bio-entry"><span class="bio-entry-year"></span><span>Fisheye Magazine</span></div>
+          <div class="bio-entry"><span class="bio-entry-year"></span><span>Vist Projects</span></div>
         </div>
       </div>
     </div>
@@ -939,56 +1073,57 @@ footer {
 
 
 <script>
-let currentLang = 'es';
 let activeOverlay = null;
+let currentLang = 'es';
 
+/* ── OVERLAY ── */
 function openOverlay(id) {
-  // close any open first
-  if (activeOverlay) {
-    document.getElementById('overlay-' + activeOverlay).classList.remove('open');
-  }
+  if (activeOverlay) document.getElementById('overlay-' + activeOverlay).classList.remove('open');
   const el = document.getElementById('overlay-' + id);
-  if (el) {
-    el.classList.add('open');
-    el.scrollTop = 0;
-    activeOverlay = id;
-    document.body.style.overflow = 'hidden';
-  }
+  if (el) { el.classList.add('open'); el.scrollTop = 0; activeOverlay = id; document.body.style.overflow = 'hidden'; }
 }
-
 function closeOverlay() {
-  if (activeOverlay) {
-    document.getElementById('overlay-' + activeOverlay).classList.remove('open');
-    activeOverlay = null;
-    document.body.style.overflow = '';
-  }
+  if (activeOverlay) { document.getElementById('overlay-' + activeOverlay).classList.remove('open'); activeOverlay = null; document.body.style.overflow = ''; }
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeOverlay(); });
+
+/* ── SLIDESHOW ── */
+function getSlideshow(btn) { return btn.closest('.slideshow'); }
+
+function nextSlide(btn) {
+  const sw = getSlideshow(btn);
+  const slides = sw.querySelectorAll('.slide');
+  const idx = [...slides].findIndex(s => s.classList.contains('active'));
+  slides[idx].classList.remove('active');
+  const next = (idx + 1) % slides.length;
+  slides[next].classList.add('active');
+  sw.querySelector('.slide-counter').textContent = (next + 1) + ' / ' + slides.length;
 }
 
-// close on ESC
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeOverlay();
-});
+function prevSlide(btn) {
+  const sw = getSlideshow(btn);
+  const slides = sw.querySelectorAll('.slide');
+  const idx = [...slides].findIndex(s => s.classList.contains('active'));
+  slides[idx].classList.remove('active');
+  const prev = (idx - 1 + slides.length) % slides.length;
+  slides[prev].classList.add('active');
+  sw.querySelector('.slide-counter').textContent = (prev + 1) + ' / ' + slides.length;
+}
 
+/* ── LANGUAGE ── */
 function setLang(lang) {
   currentLang = lang;
   document.getElementById('btn-es').classList.toggle('active', lang === 'es');
   document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-
-  // data-es / data-en text nodes
   document.querySelectorAll('[data-es]').forEach(el => {
     el.textContent = lang === 'es' ? el.getAttribute('data-es') : el.getAttribute('data-en');
   });
-
-  // bio text
   document.querySelectorAll('.bio-text-es').forEach(el => el.style.display = lang === 'es' ? '' : 'none');
   document.querySelectorAll('.bio-text-en').forEach(el => el.style.display = lang === 'en' ? '' : 'none');
-
-  // bio entries
   document.querySelectorAll('.bio-entry-es').forEach(el => el.style.display = lang === 'es' ? '' : 'none');
   document.querySelectorAll('.bio-entry-en').forEach(el => el.style.display = lang === 'en' ? '' : 'none');
 }
 
-// init language display
 setLang('es');
 </script>
 </body>
